@@ -1,0 +1,463 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block links %}
+    <!-- Stylesheet and Page Title -->
+    <title>Our Babies | Caroline Heuss Silicone Dolls</title>
+    <style>
+        :root{
+            --prim-color: #d77546;
+            --sec-color: #fff6ed;
+            --sec-color-2: #f3d1c5;
+            --msg-color: #2e8b57;
+            --dsg-color: #20b2aa;
+            --lsg-color: #8fbc8f;
+            --dodger-blue: #1e90ff;
+            --text-dark: rgba(0, 0, 0, 0.7);
+            --white-color: #fff;
+            --light-dark: rgba(0, 0, 0, 0.5);
+            --orange-color: #d77647;
+            --orange-color-2: #ff8c00;
+            --unigue-white: #fedede;
+        }
+        *{
+            box-sizing: border-box;
+        }
+        button, input, select, textarea{
+            box-shadow: none;
+            outline: none;
+
+            &:focus{
+                box-shadow: none !important;
+                outline: none !important;
+            }
+        }
+        a{
+            text-decoration: none !important;
+        }
+
+        .body{
+            background-color: var(--sec-color);
+        }
+
+
+
+        .welcome-message{
+            width: 100%;
+            margin: 20px auto;
+
+            .title{
+                font-size: 1.6rem;
+                color: var(--text-dark);
+                text-transform: capitalize;
+                margin: 20px 0;
+            }
+
+            .text{
+                font-size: 1.1rem;
+                color: rgba(0, 0, 0, 0.5);
+            }
+
+
+            @media (min-width:768px) {
+                width: 60%;
+            }
+            
+        }
+
+
+
+        .category-list{
+            .title{
+                font-size: 1.8rem;
+                color: var(--text-dark);
+                text-transform: capitalize;
+                margin: 20px 0;
+            }
+
+
+            .cartegory-card{
+                border-radius: 5px;
+                margin: 0 auto;
+                display: block;
+                overflow: hidden;
+                position: relative;
+
+                .bg-overlay{
+                    background-color: var(--light-dark);
+                    position: absolute;
+                    border-radius: 5px;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    visibility: hidden;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    opacity: 0;
+                    transition: all 0.3s ease;
+                    z-index: 500;
+
+                    .name{
+                        font-size: 1.3rem;
+                        color: var(--unigue-white);
+                        text-transform: capitalize;
+                    }
+                }
+
+                &:hover{
+
+                    .bg-overlay{
+                        visibility: visible;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+
+
+
+        /* =========================
+        Featured Products Styling
+        ========================= */
+        .products-section {
+            width: 100%;
+            padding: 50px 10px 50px;
+
+            @media (min-width: 768px) {
+                padding: 1px 0 50px;
+                margin: 0 auto !important;
+            }
+
+            .section-title {
+                position: relative;
+                font-size: 1.5rem;
+                margin: 0 20px;
+                padding: 0 0;
+                line-height: 3rem;
+            }
+
+            .products {
+                padding: 20px;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                align-items: center;
+
+
+                .product-sorting-box{
+                    padding: 0;
+                    color: rgba(0, 0, 0, 0.7);
+                    
+                }
+
+                .product {
+                    
+                    .product-card {
+                        width: 100%;
+                        max-width: 100%;
+                        height: auto;
+                        margin: 10px 0;
+                        border-radius: 5px;
+
+                        .product-img {
+                            width: 100%;
+                            height: 300px;
+                            overflow: hidden;
+                            border-radius: 5px;
+                            position: relative;
+
+                            .img {
+                                width: 100%;
+                                height: 100%;
+                                object-position: top;
+                                object-fit: cover;
+                                transition: all 0.3s ease;
+                                border-radius: 5px;
+
+                                &:hover {
+                                    transform: scale(1.1);
+                                }
+                            }
+
+                            .favourite {
+                                position: absolute;
+                                top: 10px;
+                                right: 10px;
+                                background-color: transparent;
+                                border: none;
+                                color: var(--primary-color);
+                                cursor: pointer;
+                                transition: all 0.3s ease;
+
+                                .material-symbols-outlined {
+                                    font-size: 2.3rem;
+                                    transition: all 0.3s ease;
+                                    z-index: 900;
+                                }
+                            }
+                        }
+
+                        .product-details {
+                            padding: 5px;
+
+                            .product-name {
+                                font-size: 1.2rem;
+                                font-weight: 500;
+                                margin: 10px 0 0;
+                                padding: 0px 10px;
+                                position: relative;
+
+                                &::before {
+                                    content: '';
+                                    width: 3px;
+                                    height: 80%;
+                                    position: absolute;
+                                    left: 0;
+                                    top: 1px;
+                                    background-color: var(--meadium-sea-green);
+                                    box-shadow: 1px 1px 10px var(--meadium-sea-green);
+                                }
+                            }
+
+                            .product-price {
+                                font-size: 1.1rem;
+                                color: var(--meadium-sea-green);
+                                font-weight: 500;
+                                margin-top: 5px;
+                            }
+
+                            .product-sex {
+                                font-size: 1.0rem;
+                                color: var(--dark-color);
+                                margin-top: 5px;
+                            }
+
+                            .product-review {
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+                                margin-top: 5px;
+
+                                .review {
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                }
+
+                                .rating {
+                                    span {
+                                        font-size: 1.0rem;
+                                        color: var(--meadium-sea-green);
+                                    }
+                                }
+                            }
+                        }
+
+                        .product-btn {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-around;
+                            width: 100%;
+                            margin: 10px 0 0;
+                            overflow: hidden;
+
+                            .view-details {
+                                box-sizing: border-box;
+                                width: 79%;
+                                height: 55px;
+                                padding-top: 15px;
+                                background-color: var(--meadium-sea-green);
+                                border: 2px solid var(--meadium-sea-green);
+                                color: var(--light-color);
+                                border-radius: 2px;
+                                font-size: 1rem;
+                                font-weight: 500;
+                                transition: all 0.3s ease;  
+
+                                &:hover {
+                                
+                                    background-color: transparent;
+                                    color: var(--meadium-sea-green);
+                                }
+                            }
+                            .add-to-cart {
+                                box-sizing: border-box;
+                                width: 20%;
+                                height: 55px;
+                                background-color: var(--prim-color);
+                                border: 2px solid var(--prim-color);
+                                border-radius: 2px;
+                                transition: all 0.3s ease;
+
+                                .material-symbols-outlined{
+                                    color: var(--light-color);
+                                    font-size: 2rem;
+                                    font-weight: 900;
+                                    line-height: 2.5rem;
+                                }
+
+                                &:hover {
+                                    background-color: transparent;
+                                
+                                    .material-symbols-outlined{
+                                        color: var(--prim-color);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    {% include "navbar.html" %}
+
+    <!-- Welcome Section -->
+    <section class="welcome-message">
+        <div class="container">
+            <div class="row w-md-75">
+                <h1 class="title raleway-semibold text-center">welcome to caroline heuss</h1>
+                <p class="text raleway-medium text-center">
+                    Discover our lovingly handcrafted collection of realistic silicone baby dolls. Each creation is made with care, precision, and heart, using premium platinum-grade medical silicone for unmatched realism and comfort.
+                </p>
+                <p class="text raleway-medium text-center">
+                    Whether you’re a collector, a parent honoring a memory, or searching for a meaningful, lifelike companion, you’ll find a baby to cherish here.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section">
+        <div class="container">
+            <div class="products row gap-2 gap-md-0 px-3">
+                <!-- Product Sorting Box -->
+                <div class="product-sorting-box d-flex align-items-center justify-content-between raleway-medium">
+                    <p class="products-showing">
+                        showing: 1 - <span class="products-number">1</span> of <span class="total-products">1</span> results
+                    </p>
+                    <div class="sorting-box">
+                        <div class="mb-3">
+                            <select class="form-select form-select" name="" id="">
+                                <option value="default" selected>Default Sorting</option>
+                                <option value="date">Sort By Date</option>
+                                <option value="price">Sort By Price</option>
+                                <option value="weight">Sort By Weight</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Product Card Loop -->
+                {% for product in products %}
+                    <div class="product col-12 col-md-6 col-lg-3">
+                        <div class="product-card shadow">
+                            <div class="product-img">
+                                <img src="{{ product.image.url }}" class="img img-fluid img-thumpnail" alt="Silicone Doll 1">
+                                <button 
+                                    class="favourite" 
+                                    id="add-favourite-{{ product.id }}" 
+                                    data-product-id="{{ product.id }}" 
+                                    data-wishlist-added="{% if product.id in wishlist_products %}1{% else %}0{% endif %}">
+                                    <span class="material-symbols-outlined"
+                                        style="font-variation-settings: 'FILL' {% if product.id in wishlist_products %}1{% else %}0{% endif %};">
+                                        favorite
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="product-details">
+                                <h3 class="product-name raleway-medium">Baby {{ product.name }}</h3>
+                                <p class="d-flex justify-content-between align-items-center pb-1 m-0">
+                                    <span class="product-sex">{{ product.sex }}</span>
+                                    <span class="product-price poppins-medium">${{ product.price }}</span>
+                                </p>
+                                <div class="product-review">
+                                    <div class="review">
+                                        <span class="material-symbols-outlined text-success">reviews</span>
+                                        <span class="text-muted poppins-medium">{{ product.rating }}</span>
+                                    </div>
+                                    <div class="rating">
+                                        <span class="raleway-medium"> ({{ product.reviews }} reviews)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-btn">
+                                <a href="{% url 'product_detail' slug=product.slug %}" class="view-details btn">View Details</a>
+                                <button class="add-to-cart btn" data-product-id="{{ product.id }}" id="add-to-cart-btn">
+                                    <span class="material-symbols-outlined">add_shopping_cart</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== WHY CHOOSE US SECTION ===================== -->
+    <section class="why-us">
+        <div class="section-wrapper container">
+            <div class="row d-flex align-items-center gap-2 gap-md-0 p-md-5">
+                <!-- Why Choose Us Text -->
+                <div class="col col-12 col-md-6">
+                    <h3 class="section-title-1 raleway-semibold text-capitalize">Why Choose <br> Caroline Heuss?</h3>
+                    <div class="section-content">
+                        <div class="item item-1 raleway-regular">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 48;">favorite</span>
+                            Exeptional Care & Attention To Detail
+                        </div>
+                        <div class="item item-2 raleway-regular">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 48;">brush</span>
+                            100% Handcrafted Masterpieces
+                        </div>
+                        <div class="item item-3 raleway-regular">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 48;">health_metrics</span>
+                            Lifelike Skin Texture, Weight, and Movement
+                        </div>
+                        <div class="item item-4 raleway-regular">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 48;">globe_location_pin</span>
+                            Worldwide Shipping & Friendly Support
+                        </div>
+                        <div class="item item-5 raleway-regular">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 48;">sentiment_satisfied</span>
+                            Customer Satisfaction
+                        </div>
+                        <div class="item item-6 raleway-regular">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 48;">widgets</span>
+                            Custom Orders Available
+                        </div>
+                    </div>
+                </div>
+                <!-- Why Choose Us Image -->
+                <div class="col col-12 col-md-6">
+                    <div class="section-img">
+                        <img src="{% static '/images/woman_painting_baby.avif' %}" alt="woman painting a silicone baby doll" class="img img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ===================== WHY CHOOSE US SECTION END ===================== -->
+
+    <!-- ===================== TESTIMONIALS SECTION END ===================== -->
+    {% include 'reviews.html' %}
+    <!-- ===================== TESTIMONIALS SECTION END ===================== -->
+
+    {% include 'newsletter.html' %}
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(()=>{
+            $('.product-card .product-img .img').click(function () {
+                let product =  $(this).closest('.product-card');
+                let urlPath = product.find('.product-btn a.view-details').attr('href');
+
+                location.href = urlPath;
+            })
+        });
+    </script>
+
+{% endblock %}

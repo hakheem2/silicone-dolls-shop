@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Django
+/staticfiles/        # collected static files — ignore
+#/media/           # optional — you can track it if you want
+
+# Environments
+.env
+*.env
+venv/
+
+# VS Code
+.vscode/
+
+# System
+.DS_Store
+Thumbs.db
+
+# Build
+*.log
+*.pot
+*.pyc

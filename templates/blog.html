@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block links %}
+    <title>Blog | Caroline Heuss Silicone Dolls</title>
+    <style>
+        .blog-banner{
+            background: linear-gradient(160deg, #f3d1c5, #8fbc8f);
+            .row{ 
+                padding: 100px 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: #fff;
+
+                h1{
+                    font-family: sans-serif;
+                    font-size: 2.5rem;
+                    font-weight: 700;
+                    color: #fff;
+                    text-transform: uppercase;
+                }
+                p{
+                    font-family: 'raleway', sans-serif;
+                    color: #fff;
+                    width: 98%;
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    {# Include the navigation bar #}
+    {% include "navbar.html" %}
+
+    <section class="blog-banner">
+        <div class="container p-0">
+            <div class="row">
+                <div class="col-11 col-md-10 d-flex flex-column">     
+                    <h1 class="mb-4">Welcome to the Caroline Heuss Blog</h1>
+                    <p>
+                        Here, we share heartwarming stories, collector guides, expert tips, and behind-the-scenes peeks into the world of realistic silicone baby dolls. Whether you’re a first-time buyer, experienced collector, or someone seeking emotional comfort through lifelike art, our blog has something for you.
+                    </p>
+                </div>
+                
+            </div>
+        </div>  
+    </section>
+    <!-- 
+        <section class="blod-section">
+            <div class="container">
+                <div class="row">
+                    <div class="blog-post-content col-11 col-md-6">
+                        <h1>How to Care for Your Silicone Baby Doll</h1>
+                <p>Learn the best practices for cleaning, dressing, storing, and preserving your lifelike silicone baby doll.</p>
+                <a href="#" class="read-btn">READ MORE</a>
+                    </div>
+                </div>
+            </div>
+        </section> 
+    -->
+
+
+
+
+    <!-- <div class="container">
+        <div class="featured">
+        <div class="featured-text">
+            <h1>How to Care for Your Silicone Baby Doll</h1>
+            <p>Learn the best practices for cleaning, dressing, storing, and preserving your lifelike silicone baby doll.</p>
+            <a href="#" class="read-btn">READ MORE</a>
+            <div class="meta">Posted: July 2025 • 5 min read</div>
+        </div>
+        <div class="featured-image"></div>
+        </div>
+
+        <div class="grid">
+        <div class="card">
+            <div class="card-image"></div>
+            <h3>How to Care for Your Silicone Baby Doll</h3>
+            <p>Learn the best practices for cleaning, dressing, storing, and preserving your lifelike silicone baby doll.</p>
+            <a href="#" class="read-btn">READ POST</a>
+        </div>
+
+        <div class="card">
+            <div class="card-image"></div>
+            <h3>5 Things to Know Before Buying a Silicone Baby</h3>
+            <p>Discover what makes silicone dolls different from reborns, how to pick the right one, and what to expect when yours arrives.</p>
+            <a href="#" class="read-btn">READ POST</a>
+        </div>
+
+        <div class="card">
+            <div class="card-image"></div>
+            <h3>Our Process: How Caroline Heuss Silicone Dolls Are Made</h3>
+            <p>Go behind the scenes with our artists and see the step-by-step process of sculpting, pouring, painting, and rooting.</p>
+            <a href="#" class="read-btn">READ POST</a>
+        </div>
+        </div>
+    </div> -->
+    
+{% endblock %}

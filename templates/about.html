@@ -1,0 +1,245 @@
+{% extends "base.html" %}
+{% load static %}
+
+    {% block links %}
+        <title>Our Story | Caroline Heuss Silicone Dolls</title>
+        <style>
+            :root{
+                --prim-color: #d77546;
+                --sec-color: #fff6ed;
+                --sec-color-2: #f3d1c5;
+                --msg-color: #2e8b57;
+                --dsg-color: #20b2aa;
+                --lsg-color: #8fbc8f;
+                --dodger-blue: #1e90ff;
+                --text-dark: rgba(0, 0, 0, 0.8);
+                --white-color: #fff;
+                --light-dark: rgba(0, 0, 0, 0.5);
+                --orange-color: #d77647;
+                --orange-color-2: #ff8c00;
+            }
+            *{
+                box-sizing: border-box;
+            }
+            button, input, select, textarea{
+                box-shadow: none;
+                outline: none;
+
+                &:focus{
+                    box-shadow: none !important;
+                    outline: none !important;
+                }
+            }
+
+            a{
+                text-decoration: none !important;
+            }
+
+            .body{
+                background-color: var(--sec-color);
+                overflow: visible;
+            }
+
+            #banner{
+                background: linear-gradient(160deg, var(--sec-color-2) 30%, var(--lsg-color) 70%);
+                height: 50vh;
+                display: flex;
+                align-items: center;
+                flex-direction: row;
+                justify-content: start;
+                padding-left: 10px;
+                .container{
+                    height: fit-content;
+                    .title{
+                        color: var(--text-dark);
+                        font-size: 3rem;
+                        font-weight: 900;
+                        line-height: 4rem;
+                        text-transform: uppercase;
+                        text-align: start;
+                    }
+                    .text{
+                        color: var(--text-dark);
+                        font-size: 1.5rem;
+                        text-transform: capitalize;
+                    }
+                }
+            }
+
+
+
+            #story_section{
+                padding: 50px 10px;
+
+                .content{
+                    
+                    .title{
+                        font-size: 2.3rem;
+                        color: var(--msg-color);
+                        text-transform: capitalize;
+                        line-height: 3rem;
+
+                    }
+                    .text{
+                        font-size: 1.1rem;
+                        color: var(--text-dark);
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        align-items: center;
+
+                        .material-symbols-outlined{
+                            color: var(--msg-color) !important;
+                            font-size: 1.5rem !important;
+                        }
+                    }
+
+                    .links{
+                        text-align: end;
+
+                    a {
+                            text-align: center;
+                            text-decoration: none;
+                            text-transform: capitalize;
+                            border-bottom: 1px solid;
+                            font-weight: 600;
+                            color: var(--text-color);
+                            margin: 0 10px;
+
+                            &:hover {
+                                color: var(--meadium-sea-green) !important;
+                            }
+                        }
+                    }
+                }
+
+                .image{
+                    
+                    border-radius: 2px;
+                    border-radius: 10px;
+                    overflow: hidden;
+                    height: 50vh;
+                    .img{
+                        border-radius: 2px;
+                        border: 0;
+                        width: 100%;
+                        margin: 0 auto;
+                        border-radius: 10px;
+                    }
+
+                }
+
+                @media (min-width: 768px){
+                    .content{
+                        padding-top: 50px;
+                    }
+                    .image{
+                        height: 70vh;
+                    }
+                }
+            }
+        </style>
+    {% endblock %}
+
+{% block content %}
+    {# Include the navigation bar #}
+    {% include "navbar.html" %}
+
+    <section id="banner">
+        <div class="container">
+            <h3 class="title raleway-bold text-white">Our Story</h3>
+            <p class="text raleway-medium text-white" >where love meets realism</p>
+        </div>
+    </section>
+
+    <section id="story_section">
+        <div class="container">
+            <div class="row py-5">
+                <div class="content col col-12 col-md-6">
+                    <h3 class="title raleway-bold">Our Story</h3>
+                    <p class="text raleway-medium">
+                        At Caroline Heuss Silicone Dolls, we believe that every creation should hold meaning, tell a story, and offer comfort, beauty, and joy. What started as a small, family-run studio born out of love for lifelike art has now become a sanctuary for doll collectors, reborn enthusiasts, and grieving families around the world.
+                    </p>
+                    <p class="text raleway-medium">
+                        Founded by passionate artisans and caregivers, our mission is to bring warmth and realism into your arms with every silicone baby we create.
+                    </p>
+                    <p class="text raleway-medium">
+                        Handcrafted with Care and Passion, Each baby at Caroline Heuss Silicone Dolls is carefully sculpted, molded, painted, and finished by hand. From the delicate skin tones to the tiny creases in their hands and feet, we pay attention to every detail to ensure our dolls look and feel remarkably lifelike.
+                    </p>
+                    <p class="text raleway-medium">
+                        We use platinum-grade, medical-quality silicone, ensuring not only a beautifully soft texture but also safety and durability. Every baby is lovingly hand-painted with multiple layers of heat-set colors to create realistic skin depth, subtle veining, and natural blushing.
+                    </p>
+                </div>
+                <div class="image col col-12 col-md-6">
+                    <img src="{% static 'images/lady_baby_care.avif' %}" class="img img-fluid" alt="">
+                </div>
+            </div>
+            <div class="row py-5">
+                <div class="content col col-12 col-md-6">
+                    <h3 class="title raleway-bold">Why We Do What We Do</h3>
+                    <p class="text raleway-medium">
+                        For us, it’s more than just art — it’s about offering a source of comfort, healing, and connection. Whether you’re a collector searching for a masterpiece, a parent honoring the memory of a lost child, or someone seeking a therapeutic companion, our dolls are created to provide warmth, peace, and love.
+                    </p>
+                     <p class="text raleway-medium">
+                        We’ve seen firsthand how these lifelike creations help people cope with loss, manage anxiety, and rediscover joy. It’s the reason we put our hearts into every doll we craft.
+                    </p>
+                </div>
+                <div class="content col col-12 col-md-6">
+                    <h3 class="title raleway-bold">Our Mission</h3>
+                    <p class="text raleway-medium">
+                        To craft realistic, high-quality silicone baby dolls that spark connection, offer comfort, and create lifelong memories — delivering pieces that feel as meaningful as the stories behind them.
+                    </p>
+                    <h3 class="title raleway-bold">Meet The Team</h3>
+                    <p class="text raleway-medium">     
+                        Coming soon: We’ll be introducing the talented artists behind every Caroline Heuss baby.
+                    </p>
+                </div>
+            </div>
+            <div class="row py-5">
+                <div class="content col col-12 col-md-6">
+                    <h3 class="title raleway-bold">What Makes Us Unique</h3>
+                    <p class="text raleway-regular">
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 48;">favorite</span>
+                        Exeptional Care & Attention To Detail
+                    </p>
+                    <p class="text raleway-regular">
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 48;">brush</span>
+                        100% Handcrafted Masterpieces
+                    </p>
+                    <p class="text raleway-regular">
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 48;">health_metrics</span>
+                        Lifelike Skin Texture, Weight, and Movement
+                    </p>
+                    <p class="text raleway-regular">
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 48;">globe_location_pin</span>
+                        Worldwide Shipping & Friendly Support
+                    </p>
+                    <p class="text raleway-regular">
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 48;">sentiment_satisfied</span>
+                        Customer Satisfaction
+                    </p>
+                    <p class="text raleway-regular">
+                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 48;">widgets</span>
+                        Custom Orders Available
+                    </p>
+                </div>
+                <div class="image col col-12 col-md-6">
+                    <img src="{% static 'images/woman_painting_baby.avif' %}" class="img img-fluid" alt="">
+                </div>
+                <div class="content">
+                    <h3 class="title raleway-bold">Join Our Family</h3>
+                    <p class="text raleway-medium">
+                        Discover why so many collectors, families, and enthusiasts trust Caroline Heuss Silicone Dolls for their most precious moments. Explore our collection, follow our journey, and bring a little love into your arms.
+                    </p>
+                    <div class="links">
+                        <a href="{% static 'product_list' %}">View Our Dolls</a>
+                        <a href="{% static 'contact' %}">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    
+{% endblock %}

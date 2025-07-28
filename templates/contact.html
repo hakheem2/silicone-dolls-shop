@@ -1,0 +1,336 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block links %}
+    <!-- Stylesheet and Page Title -->
+    <title>Contact Us | Caroline Heuss Silicone Dolls</title>
+    <style>
+        :root {
+            /* Color Variables */
+            --prim-color: #d77546;
+            --sec-color: #fff6ed;
+            --sec-color-2: #f3d1c5;
+            --msg-color: #2e8b57;
+            --dsg-color: #20b2aa;
+            --lsg-color: #8fbc8f;
+            --dodger-blue: #1e90ff;
+            --text-dark: rgba(0, 0, 0, 0.8);
+            --white-color: #fff;
+            --light-dark: rgba(0, 0, 0, 0.5);
+            --orange-color: #d77647;
+            --orange-color-2: #ff8c00;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Remove default button/input shadows and outlines */
+        button, input, select, textarea {
+            box-shadow: none;
+            outline: none;
+
+            &:focus {
+                box-shadow: none !important;
+                outline: none !important;
+            }
+        }
+
+        /* Remove underline from links */
+        a {
+            text-decoration: none !important;
+        }
+
+        /* Body background */
+        .body {
+            background-color: var(--sec-color);
+            overflow-x: hidden;
+        }
+
+        /* =========================
+        Banner Section
+        ========================= */
+        #banner {
+            background: linear-gradient(160deg, var(--sec-color-2) 30%, var(--lsg-color) 70%);
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            justify-content: start;
+            padding-left: 10px;
+
+            .container {
+                height: fit-content;
+
+                .title {
+                    font-size: 4rem;
+                    font-weight: 900;
+                    line-height: 4rem;
+                    text-transform: uppercase;
+                    text-align: start;
+                }
+
+                .text {
+                    font-size: 1.5rem;
+                    text-transform: capitalize;
+                }
+            }
+        }
+
+        /* =========================
+        Main Content Section
+        ========================= */
+        .main-content {
+            padding: 50px 0;
+
+            /* ---- Form Section ---- */
+            .form-section {
+                padding: 0;
+
+                .content {
+                    padding: 20px 10px;
+
+                    .title {
+                        font-size: 2.0rem;
+                        color: var(--msg-color);
+                        text-transform: capitalize;
+                        line-height: 3rem;
+                    }
+
+                    .text {
+                        font-size: 1.05rem;
+                        color: var(--text-dark);
+                    }
+                }
+            }
+
+            /* ---- Review Form ---- */
+            .review-form {
+                width: 100%;
+                height: auto;
+                border-radius: 5px;
+                background-size: 120% 100%;
+                background-repeat: no-repeat;
+                background-position: center center;
+
+                .bg-overlay {
+                    background-color: rgba(0, 0, 0, 0.7);
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 5px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 80px 20px;
+                }
+
+                .form {
+                    width: 100%;
+                    background: linear-gradient(160deg, var(--sec-color-2) 50%, var(--lsg-color) 50%);
+                    padding: 40px 10px;
+                    border-radius: 5px;
+
+                    .form-control {
+                        margin-bottom: 20px;
+                        color: var(--text-dark);
+                    }
+
+                    #review-entry-box {
+                        height: auto;
+                    }
+
+                    .btn {
+                        font-size: 1.1rem;
+                        background-color: var(--prim-color);
+                        color: var(--white-color);
+                        border-radius: 2px;
+                        padding: 15px;
+                        border-color: var(--prim-color);
+
+                        &:hover,
+                        &:focus {
+                            background-color: var(--white-color);
+                            color: var(--prim-color);
+                        }
+                    }
+
+                    @media (min-width: 768px) {
+                        width: 70%;
+                        padding: 80px 20px;
+                    }
+                }
+            }
+
+            /* ---- Info Section ---- */
+            .info-section {
+                margin: 20px 0;
+                padding: 40px 10px;
+                border-radius: 10px;
+                background-color: var(--white-color);
+
+                .contact-info {
+                    height: fit-content;
+                    padding: 10px;
+
+                    .title {
+                        font-size: 1.8rem;
+                        color: var(--msg-color);
+                        text-transform: capitalize;
+                        line-height: 3rem;
+                    }
+
+                    a.icon {
+                        color: rgba(0, 0, 0, 0.8);
+                        text-decoration: none;
+                        text-transform: capitalize;
+                        font-size: 1.05rem;
+                        display: flex;
+                        align-items: center;
+                        margin: 0 !important;
+                        padding: 0 !important;
+
+                        span {
+                            font-variation-settings: "FILL" 1, "wght" 600, "GRAD" 0, "opsz" 48;
+                            font-size: 1.2rem;
+                            color: var(--meadium-sea-green) !important;
+                            margin-right: 10px;
+                            margin: 0;
+                            padding: 0;
+                        }
+                    }
+                }
+
+                /* ---- Bottom Section ---- */
+                .buttom-section {
+                    .content {
+                        padding: 30px 10px 10px;
+
+                        .title {
+                            font-size: 1.8rem;
+                            color: var(--msg-color);
+                            text-transform: capitalize;
+                            line-height: 3rem;
+                        }
+
+                        .text {
+                            font-size: 1.2rem;
+                            color: var(--text-dark);
+                        }
+                    }
+                }
+            }
+        }
+
+    </style>
+{% endblock %}
+
+{% block content %}
+    <!-- Include the navigation bar -->
+    {% include "navbar.html" %}
+
+    <!-- Banner Section -->
+    <section id="banner">
+        <div class="container">
+            <h3 class="title raleway-bold text-white">Contact Us</h3>
+        </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <section class="main-content">
+        <div class="container">
+            <div class="row px-1 d-flex justify-content-between">
+                <!-- Contact Form Section -->
+                <div class="form-section col col-12 col-md-7">
+                    <div class="content">
+                        <h3 class="title raleway-semibold">We’d Love to Hear From You</h3>
+                        <p class="text raleway-medium">
+                            Whether you have a question about one of our dolls, want to place a custom order, need help with
+                            your purchase, or just want to say hello - we're here to help and happy to connect.
+                        </p>
+                    </div>
+                    <!-- Contact Form -->
+                    <div class="contact-form">
+                        <div class="review-form" style="background-image: url({% static 'images/contact-us.avif' %});">
+                            <div class="bg-overlay">
+                                <form action="" class="form">
+                                    <!-- Name Field -->
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="name" placeholder="Name...">
+                                        <label for="name">Name..</label>
+                                    </div>
+                                    <!-- Email Field -->
+                                    <div class="form-floating">
+                                        <input type="email" class="form-control" id="email" placeholder="Email...">
+                                        <label for="email">Email..</label>
+                                    </div>
+                                    <!-- Subject Field -->
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="subject" placeholder="Subject...">
+                                        <label for="subject">Subject..</label>
+                                    </div>
+                                    <!-- Message Field -->
+                                    <div class="form-floating">
+                                        <textarea name="review-entry-box" class="form-control" id="review-entry-box"
+                                            placeholder="Give Review..." rows="5"></textarea>
+                                        <label for="review-entry-box">Message..</label>
+                                    </div>
+                                    <!-- Submit Button -->
+                                    <div class="d-grid">
+                                        <button type="button" class="btn raleway-medium">Send Message</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Contact Form Section -->
+
+                <!-- Contact Info and Opening Hours Section -->
+                <div class="col col-12 col-md-4 mx-0 my-md-5 px-1">
+                    <div class="info-section shadow-sm">
+                        <!-- Contact Information -->
+                        <div class="top-section">
+                            <div class="contact-info">
+                                <h3 class="title raleway-semibold">Our Studio</h3>
+                                <a href="tel:tel:+13233754195" class="icon phone-icon raleway-medium">
+                                    <span class="material-symbols-outlined">call</span>+1(323) 375 4195
+                                </a> <br>
+                                <a href="mailto:support@carolineheusssiliconedolls.com" class="icon email-icon raleway-medium">
+                                    <span class="material-symbols-outlined">mail</span>support@carolineheuss.com
+                                </a> <br>
+                                <a href="maps.google.com" class="icon address-icon raleway-medium">
+                                    7147 Churchland St Pittsburgh,  <br> PA 15206, USA.
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Opening Hours -->
+                        <div class="bottom-section pt-3 ps-2">
+                            <div class="content">
+                                <h3 class="title raleway-semibold text-success">Opening Hours</h3>
+                                <p class="text raleway-medium">
+                                    Monday : 5.60 AM - 5.00 PM
+                                </p>
+                                <p class="text raleway-medium">
+                                    Tuesday : 5.60 AM - 5.00 PM
+                                </p>
+                                <p class="text raleway-medium">
+                                    Wednesday : 5.60 AM - 5.00 PM
+                                </p>
+                                <p class="text raleway-medium">
+                                    Thursday : 5.60 AM - 5.00 PM
+                                </p>
+                                <p class="text raleway-medium">
+                                    Fridays : 5.60 AM - 5.00 PM
+                                </p>
+                                <p class="text raleway-medium">
+                                    Saturday : 10.00 AM - 4.00 PM
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Contact Info and Opening Hours Section -->
+            </div>
+        </div>
+    </section>
+{% endblock %}

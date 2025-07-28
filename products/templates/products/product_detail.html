@@ -1,0 +1,1009 @@
+{% extends "base.html" %}
+    {% load static %}
+
+    {% block links %}
+        <title> Baby {{ product.name}} | Caroline Heuss Silicone Dolls</title>
+        <style>
+            :root{
+                --prim-color: #d77546;
+                --sec-color: #fff6ed;
+                --sec-color-2: #f3d1c5;
+                --msg-color: #2e8b57;
+                --dsg-color: #20b2aa;
+                --lsg-color: #8fbc8f;
+                --dodger-blue: #1e90ff;
+                --text-dark: rgba(0, 0, 0, 0.8);
+                --white-color: #fff;
+                --light-dark: rgba(0, 0, 0, 0.5);
+                --orange-color: #d77647;
+                --orange-color-2: #ff8c00;
+            }
+            *{
+                box-sizing: border-box;
+            }
+            button, input, select, textarea{
+                box-shadow: none;
+                outline: none;
+
+                &:focus{
+                    box-shadow: none !important;
+                    outline: none !important;
+                }
+            }
+
+            a{
+                text-decoration: none !important;
+            }
+
+            .body{
+                background-color: var(--sec-color);
+                overflow: visible;
+            }
+
+            img{
+                object-fit: cover;
+                object-position: top;
+            }
+
+            .product-images{
+
+                .main-image{
+                    margin: 0 auto;
+                    height: 45vh;
+                    border-radius: 10px;
+                    overflow: hidden;
+                    .img{
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 10px;
+                        transition: all 0.3s ease;
+
+                        &:hover{
+                            transform: scale(1.1);
+                        }
+                    }
+                }
+                
+                .side-images{
+
+                    .img-box{
+                        padding: 2px;
+                        border-radius: 10px;
+                        width: 25%;
+                        height: 100px;
+                        overflow: hidden;
+
+                        .img{
+                            border-radius: 10px;
+                            height: 100%;
+                            width: 100%;
+                            transition: all 0.2s ease;
+
+                            &:hover{
+                                transform: scale(1.1);
+                            }
+                        }
+                    }
+                }
+
+
+                @media (min-width: 768px){
+                    .main-image{
+                        height: 60vh;
+                    }
+                    .side-images{
+
+                        .img-box{
+                            height: 120px;
+                        }
+                    }
+                }
+            }
+
+
+            .product-details {
+                width: 100%;
+                margin: 0 auto;
+
+                .name{
+                    font-size: 3rem;
+                    color: var(--text-dark);
+                    padding: 10px 0;
+                    position: relative;
+                    
+                    &::before {
+                        content: '';
+                        width: 100%;
+                        height: 2px;
+                        position: absolute;
+                        left: 0;
+                        bottom: 1px;
+                        background-color: var(--meadium-sea-green);
+                    }
+                }
+
+                .other{
+                    .sex{
+                        color: var(--text-dark);
+                        font-size: 1.2rem;
+                    }
+                    .price{
+                        color: var(--msg-color);
+                        font-size: 1.5rem;
+                    }
+                    .weight, .size{
+                        color: rgba(0, 0, 0, 0.7);
+                        font-size: 1rem;
+                        padding: 5px 0;
+
+                        i{
+                            color: var(--msg-color);
+                            font-size: 1.1rem;
+                            font-style: normal;
+                        }
+                    }
+                }
+
+                .review{
+                    margin-bottom: 20px;
+                }
+
+
+                @media (min-width: 768px){
+                    width: 90%;
+                    margin: 0 auto;
+                }
+            }
+
+            .product-values{
+                width: 100%;
+                margin: 0  auto;
+                color: var(--text-dark);
+
+                select{
+                    color: var(--text-dark);
+                }
+
+                .qty-box{
+                    background-color: var(--white-color);
+                    height: 36px;
+                    .btn{
+                        background-color: var(--text-dark);
+                        border-radius: 2px;
+                        height: 100%;
+                        color: var(--white-color);
+                        font-size: 1.5rem;
+                        line-height: 1.2rem;
+
+                        &:focus{
+                            border-color: var(--white-color);
+                        }
+                    }
+                }
+
+                #add-cart{
+                    width: 100%;
+                    display: block;
+                    border-radius: 2px;
+                    font-size: 1.2rem;
+                    color: var(--white-color);
+                    background-color: var(--meadium-sea-green);
+                    transition: all 0.3s ease;
+
+                    &:hover{
+                        background-color: var(--white-color);
+                        color: var(--meadium-sea-green);
+                        border: 1px solid var(--meadium-sea-green);
+                    }
+                }
+                @media (min-width: 768px){
+                    width: 90%;
+                }
+            }
+
+
+
+            .product-features{
+                width: 100%;
+                margin: 0 auto;
+                color: var(--text-dark);
+
+                .title{
+                    font-size: 1.8rem;
+                    color: var(--text-dark);
+                    font-weight: 500;
+                    line-height: 3rem;
+                    margin-top: 15px;
+                }
+
+                .list{
+
+                    .list-item{
+                        font-size: 1.1rem;
+                        display: flex;
+                        align-items: center;
+                        line-height: 2rem;
+                        .material-symbols-outlined{
+                            color: var(--meadium-sea-green);
+                        }
+                    }
+                }
+
+                @media (min-width: 768px){
+                    width: 90%;
+                    
+                }
+            }
+
+
+            .purchase-details{
+                width: 100%;
+                margin: 0 auto;
+                color: var(--text-dark);
+
+                .title{
+                    font-size: 1.8rem;
+                    color: var(--text-dark);
+                    font-weight: 500;
+                    line-height: 3rem;
+                    margin-top: 15px;
+                }
+
+                .list{
+
+                    .list-item{
+                        font-size: 1.1rem;
+                        display: flex;
+                        align-items: center;
+                        line-height: 2rem;
+                        .material-symbols-outlined{
+                            color: var(--meadium-sea-green);
+                            font-size: 1.4rem;
+                            padding-right: 5px;
+                        }
+
+                        i{
+                            text-decoration: dotted;
+                        }
+                    }
+                }
+
+                @media (min-width: 768px){
+                    width: 90%;
+                    
+                }
+            }
+
+
+            .about-product{
+                width: 100%;
+                margin: 0 auto;
+                color: var(--text-dark);
+                margin-bottom: 40px;
+                .title{
+                    font-size: 1.8rem;
+                    color: var(--text-dark);
+                    font-weight: 500;
+                    line-height: 3rem;
+                    margin-top: 15px;
+                }
+                .text{
+                    font-size: 1.1rem;
+                    line-height: 2rem;
+                }
+            }
+
+
+
+            .customer-reviews{
+                width: 100%;
+                margin: 40px 0;
+                color: var(--text-dark);
+
+                .title{
+                    font-size: 2rem;
+                    color: var(--text-dark);
+                    margin: 0 0 30px;
+                    display: flex;
+                    justify-content: start;
+                    align-items: baseline;
+
+                    .material-symbols-outlined{
+                        font-size: 4rem;
+                        color: var(--meadium-sea-green);
+                        padding: 0;
+                        font-variation-settings: "FILL" 1, "wght" 600, "GRAD" 0, "opsz" 48;
+                    }
+                }
+                .review-content{
+                    font-size: 1.1rem;
+                    line-height: 2rem;
+                    padding: 10px 0;
+                    position: relative;
+
+                    .material-symbols-outlined{
+                        font-size: 1.2rem;
+                        line-height: 0;
+                        color: gold;
+                        font-variation-settings: "FILL" 1, "wght" 600, "GRAD" 0, "opsz" 48;;
+                    }
+                    .name{
+                        font-size: 1rem;
+                        position: absolute;
+                        right: 5px;
+                        bottom: -10px;
+                    }
+                }
+
+
+                .review-form{
+                    width: 100%;
+                    height: 60vh;
+                    border-radius: 5px;
+                    background-size: 120% 100%;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+
+                    .title{
+                        font-size: 1.5rem;
+                        color: var(--meadium-sea-green);
+                        font-weight: 500;
+                        line-height: 2rem;
+                        margin: 15px 0;   
+                        text-align: center;
+
+                        .material-symbols-outlined{
+                            font-size: 3rem;
+                            color: gold;
+                            padding: 0;
+                            font-variation-settings: "FILL" 1, "wght" 600, "GRAD" 0, "opsz" 48;
+                        }
+                    }
+
+                    .bg-overlay{
+                        background-color: rgba(0, 0, 0, 0.7);
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 5px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 0 15px;
+                    }
+
+                    .form{
+                        background: linear-gradient(160deg, var(--sec-color-2) 50%, var(--lsg-color) 50%);
+                        padding: 40px 10px;
+                        border-radius: 5px;
+
+
+                        .form-control{
+                            margin-bottom: 20px;
+                            color: var(--text-dark);
+                        }
+                        #review-entry-box{
+                            height: auto;
+                        }
+
+                        .btn{
+                            font-size: 1.1rem;
+                            background-color: var(--prim-color);
+                            color: var(--white-color);
+                            border-radius: 2px;
+                            padding: 15px;
+                            border-color: var(--prim-color);
+
+                            &:hover, &:focus{
+                                background-color: var(--white-color);
+                                color: var(--prim-color);
+                            }
+                        }
+                    }
+                }
+
+
+                @media (min-width: 768px){
+                    width: 90%;
+                    margin: 40px 0;
+                    color: var(--text-dark);
+
+                    .title{
+                        font-size: 2.5rem;
+                        line-height: 3rem;
+                        width: 90%;
+                        margin: 0 auto;
+
+                        .material-symbols-outlined{
+                            font-size: 5rem;
+                        }
+                    }
+
+                    .form{
+                        padding: 50px 20px !important;
+                    }
+                }
+            }
+
+
+
+            .related-products{
+                margin: 40px 0;
+                #carousel-mobile{
+                    width: 95%;
+                    display: block;
+                    margin: 0 auto;
+                }
+                .title{
+                        font-size: 1.8rem;
+                        color: var(--text-dark);
+                        font-weight: 500;
+                        line-height: 2rem;
+                        margin: 15px 20px; 
+                }
+                .product {
+                    
+                    .product-card {
+                        width: 100%;
+                        max-width: 100%;
+                        height: auto;
+                        margin: 10px 0;
+                        border-radius: 5px;
+
+                        .product-img {
+                            width: 100%;
+                            height: 300px;
+                            overflow: hidden;
+                            border-radius: 5px;
+                            position: relative;
+
+                            .img {
+                                object-fit: cover;
+                                transition: all 0.3s ease;
+                                border-radius: 5px;
+
+                                &:hover {
+                                    transform: scale(1.1);
+                                }
+                            }
+
+                            .favourite {
+                                position: absolute;
+                                top: 10px;
+                                right: 10px;
+                                background-color: transparent;
+                                border: none;
+                                color: var(--primary-color);
+                                cursor: pointer;
+                                transition: all 0.3s ease;
+
+                                .material-symbols-outlined {
+                                    font-size: 2.3rem;
+                                    transition: all 0.3s ease;
+                                    z-index: 900;
+                                }
+                            }
+                        }
+
+                        .product-details {
+                            padding: 5px;
+
+                            .product-name {
+                                font-size: 1.3rem;
+                                font-weight: 500;
+                                margin: 10px 0 0;
+                                padding: 0px 10px;
+                                position: relative;
+
+                                &::before {
+                                    content: '';
+                                    width: 3px;
+                                    height: 80%;
+                                    position: absolute;
+                                    left: 0;
+                                    top: 1px;
+                                    background-color: var(--meadium-sea-green);
+                                    box-shadow: 1px 1px 10px var(--meadium-sea-green);
+                                }
+                            }
+
+                            .product-price {
+                                font-size: 1.2rem;
+                                color: var(--meadium-sea-green);
+                                font-weight: 500;
+                                margin-top: 5px;
+                            }
+
+                            .product-sex {
+                                font-size: 1.1rem;
+                                color: var(--dark-color);
+                                margin-top: 5px;
+                            }
+
+                            .product-review {
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+                                margin-top: 5px;
+
+                                .review {
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                }
+
+                                .rating {
+                                    span {
+                                        font-size: 1.1rem;
+                                        color: var(--meadium-sea-green);
+                                    }
+                                }
+                            }
+                        }
+                        .product-btn {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-around;
+                            width: 100%;
+                            margin: 10px 0 0;
+                            overflow: hidden;
+
+                            .view-details {
+                                box-sizing: border-box;
+                                width: 79%;
+                                height: 55px;
+                                padding-top: 15px;
+                                background-color: var(--meadium-sea-green);
+                                border: 2px solid var(--meadium-sea-green);
+                                color: var(--light-color);
+                                border-radius: 2px;
+                                font-size: 1rem;
+                                font-weight: 500;
+                                transition: all 0.3s ease;  
+
+                                &:hover {
+                                    
+                                    background-color: transparent;
+                                    color: var(--meadium-sea-green);
+                                }
+                            }
+                            .add-to-cart {
+                                box-sizing: border-box;
+                                width: 20%;
+                                height: 55px;
+                                background-color: var(--prim-color);
+                                border: 2px solid var(--prim-color);
+                                border-radius: 2px;
+                                transition: all 0.3s ease;
+
+                                .material-symbols-outlined{
+                                    color: var(--light-color);
+                                    font-size: 2rem;
+                                    font-weight: 900;
+                                    line-height: 2.5rem;
+                                }
+
+                                &:hover {
+                                    background-color: transparent;
+                                
+                                    .material-symbols-outlined{
+                                        color: var(--prim-color);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .carousel-control-prev{
+                    font-size: 2.5rem;
+
+                    .material-symbols-outlined{
+                        background-color: rgba(0, 0, 0, 0.5);
+                        padding: 20px 10px;
+                        border-radius: 5px;
+                        color: var(--white-color);
+                    }
+                }
+
+                .carousel-control-next{
+                    font-size: 2.5rem;
+
+                    .material-symbols-outlined{
+                        background-color: rgba(0, 0, 0, 0.5);
+                        padding: 20px 10px;
+                        border-radius: 5px;
+                        color: var(--white-color);
+                    }
+                }
+
+                
+            }
+        </style>
+    {% endblock %}
+
+    {% block content %}
+    {% include "navbar.html" %}
+
+    <!-- ===================== Product Details Start ===================== -->
+    <section class="product-section my-4">
+        <div class="container">
+            <div class="row d-flex justify-content-center mx-0">
+                <!-- Product Images Column -->
+                <div class="column-1 col-12 col-md-6">
+                    <div class="product-images">
+                        <!-- Main Product Image -->
+                        <div class="main-image">
+                            <img src="{{ product.image.url }}" alt="{{ product.slug }}" class="img img-fluid" id="main-img">
+                        </div>
+                        <!-- Side Images Thumbnails -->
+                        <div class="side-images d-flex justify-content-between align-items-center">
+                            {% for image in product.gallery_images.all %}
+                            <div class="img-box">
+                                <img src="{{ image.image.url }}" alt="{{ product.slug }}" class="img img-fluid galerry_image">
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <!-- About Product (Desktop) -->
+                        <div class="about-product d-none d-md-block">
+                            <h3 class="title raleway-medium">About {{ product.name }} </h3>
+                            <p class="text raleway-medium"> {{ product.description}} </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Details Column -->
+                <div class="column-2 col-12 col-md-6">
+                    <div class="product-details">
+                        <h1 class="name mb-4 mt-3 mt-md-0 raleway-semibold"> Baby {{ product.name }} </h1>
+                        <div class="other d-flex justify-content-between align-items-center pb-1">
+                            <h5 class="sex raleway-medium">{{ product.sex }}</h5>
+                            <h5 class="price poppins-medium">${{ product.price }}</h5>
+                        </div>
+                        <div class="other pb-1">
+                            <h5 class="weight raleway-medium">Weight: <i class="">{{ product.weight }} lbs</i></h5>
+                            <h5 class="size raleway-medium">Size: <i class="">{{ product.size }} inches </i></h5>
+                        </div>
+                        <!-- Product Review -->
+                        <div class="review d-flex justify-content-start">
+                            <div class="rating d-flex align-items-center">
+                                <span class="material-symbols-outlined text-success">reviews</span>
+                                <span class="poppins-medium text-muted">{{ product.rating }}</span>
+                                <span class="raleway-medium text-success px-2">({{ product.reviews }} reviews)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product input Form -->
+                    <div class="product-values">
+                        <form action="#" class="form" id="add-to-cart-form">
+                            {% csrf_token %}
+                            <!-- Quantity Selector -->
+                            <div class="mb-4 raleway-medium">
+                                <label for="quantity" class="form-label">Quantity</label>
+                                <div class="d-flex justify-content-between align-items-center gap-2">
+                                    <div class="qty-box d-flex align-items-center">
+                                        <button type="button" class="btn raleway-medium" id="sub-qty">-</button>
+                                        <input type="number" name="quantity" id="quantity" class="form-control text-center" min="1" max="{{ product.no_in_stock}}" value="1" style="width: 80px; border: none;" required>
+                                        <button type="button" class="btn raleway-medium" id="add-qty">+</button>
+                                    </div>
+                                    <span class="qty-left text-success fst-italic raleway-regular">In Stock: {{ product.no_in_stock }}</span>
+                                </div>
+                            </div>
+                            <!-- Hair Color Selector -->
+                            {% comment %}
+                            <div class="mb-4 raleway-medium">
+                                <label for="hairColor" class="form-label">Hair Color</label>
+                                <select name="hairColor" id="hairColor" class="form-select">
+                                    <option value="black" selected>Black</option>
+                                    <option value="brown">Brown</option>
+                                    <option value="blond">Blond</option>
+                                </select>
+                            </div>
+                            <!-- Eye Color Selector -->
+                            <div class="mb-4 raleway-medium">
+                                <label for="eyeColor" class="form-label">Eye Color</label>
+                                <select name="eyeColor" id="eyeColor" class="form-select">
+                                    <option value="black" selected>Black</option>
+                                    <option value="brown">Brown</option>
+                                    <option value="blue">Blue</option>
+                                </select>
+                            </div>  
+                            {% endcomment %}
+
+                            <div class="mb-4 raleway-medium">
+                                <label for="hairColor" class="form-label" style="color: mediumseagreen; font-size: 1.3rem;">Payment Plans</label>
+                                <select name="paymentOptions" id="paymentOptions" class="form-select">
+                                    <option value="2" selected>2 Installments</option>
+                                    <option value="3">3 Installments</option>
+                                    <option value="1">Full Payment</option>
+                                </select>
+                            </div>
+                            <!-- Add To Cart Button -->
+                            <div class="d-flex justify-content-between raleway-medium w-100">
+                                <button type="submit" class="btn btn-lg add-to-cart-btn" data-product-id="{{ product.id }}" id="add-cart">Add To Cart</button>
+                                <!-- <button type="submit" class="btn btn-lg" id="buy-now">Buy Now</button> -->
+                            </div>
+                            <!-- div for ajax cart messages -->
+                            <div id="ajax-message" class="mt-2 raleway-regular"></div>
+                        </form>
+                        
+                    </div>
+                    <!-- Product Features (Desktop) -->
+                    <div class="product-features d-none d-md-block">
+                        <h3 class="title raleway-medium">Product Features</h3>
+                        <ul class="list list-unstyled my raleway-medium">
+                            <li class="list-item"><span class="material-symbols-outlined">check_small</span>Awake, expressive eyes with glass or acrylic options</li>
+                            <li class="list-item"><span class="material-symbols-outlined">check_small</span>Hand-rooted premium mohair hair</li>
+                            <li class="list-item"><span class="material-symbols-outlined">check_small</span>Weighted to feel lifelike (approx. 5 lbs)</li>
+                            <li class="list-item"><span class="material-symbols-outlined">check_small</span>Painted with multiple layers of heat-set silicone paint</li>
+                            <li class="list-item"><span class="material-symbols-outlined">check_small</span>Hypoallergenic, safe for sensitive skin</li>
+                            <li class="list-item"><span class="material-symbols-outlined">check_small</span>Comes with outfit, pacifier, birth certificate, and soft blanket</li>
+                            <li class="list-item"><span class="material-symbols-outlined">check_small</span>Customizable options available (hair color, skin tone, eye color)</li>
+                        </ul>
+                    </div>
+                    <!-- items buying details (Desktop) -->
+                    <div class="purchase-details d-none d-md-block">
+                        <h3 class="title raleway-medium">Purchasing Details</h3>
+                        <ul class="list list-unstyled my raleway-medium">
+                            <li class="list-item"><span class="material-symbols-outlined">calendar_clock</span><span>Order today to get by <i class="expected_date"></i></span></li>
+                            <li class="list-item"><span class="material-symbols-outlined">table_convert</span>Returns & exchanges may be apllicable</li>
+                            <li class="list-item"><span class="material-symbols-outlined">delivery_truck_speed</span>Pay in a single Installment to get Free Shipping</li>
+                            <li class="list-item"><span class="material-symbols-outlined">globe_location_pin</span>Ships from United States</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- End Product Details Column -->
+                <!-- About Product & Features (Mobile) -->
+                <div class="col col-12 col-md-6">
+                    <div class="about-product d-block d-md-none">
+                        <h3 class="title raleway-medium">About {{ product.name }}</h3>
+                        <p class="text raleway-medium">
+                            {{ product.description }}
+                        </p>
+                    </div>
+                    <div class="product-features d-block d-md-none">
+                        <h3 class="title raleway-medium">Product Features</h3>
+                        <ul class="list list-unstyled my raleway-medium">
+                            <li class="list-item"><span class="material-symbols-outlined">check_small</span>Awake, expressive eyes with glass or acrylic options</li>
+                            <li class="list-item"><span class="material-symbols-outlined">check_small</span>Hand-rooted premium mohair hair</li>
+                            <li class="list-item"><span class="material-symbols-outlined">check_small</span>Weighted to feel lifelike (approx. 5 lbs)</li>
+                            <li class="list-item"><span class="material-symbols-outlined">check_small</span>Painted with multiple layers of heat-set silicone paint</li>
+                            <li class="list-item"><span class="material-symbols-outlined">check_small</span>Hypoallergenic, safe for sensitive skin</li>
+                            <li class="list-item"><span class="material-symbols-outlined">check_small</span>Comes with outfit, pacifier, birth certificate, and soft blanket</li>
+                            <li class="list-item"><span class="material-symbols-outlined">check_small</span>Customizable options available (hair color, skin tone, eye color)</li>
+                        </ul>
+                    </div>
+                    <!-- items buying details (Desktop) -->
+                    <div class="purchase-details d-block d-md-none">
+                        <h3 class="title raleway-medium">Purchasing Details</h3>
+                        <ul class="list list-unstyled my raleway-medium">
+                            <li class="list-item"><span class="material-symbols-outlined">calendar_clock</span>Order today to get by <span><i class="expected_date"></i></span></li>
+                            <li class="list-item"><span class="material-symbols-outlined">table_convert</span>Returns & exchanges apllicable</li>
+                            <li class="list-item"><span class="material-symbols-outlined">delivery_truck_speed</span>Pay in full to get Free Shipping</li>
+                            <li class="list-item"><span class="material-symbols-outlined">globe_location_pin</span>Ships from United States</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Customer Reviews Section -->
+                {% include 'reviews.html' %}
+                <!-- End Customer Reviews Section -->
+            </div>
+        </div>
+    </section>
+    <!-- ===================== Product Details End ===================== -->
+
+    <!-- ===================== Related Products Section (Mobile) ===================== -->
+    <section class="related-products d-md-none">
+        <div id="related-prod-carousel" class="container carousel slide" data-bs-ride="false">
+            <h3 class="title raleway-medium ps-2 p-md-0">Related Products</h3>
+            <!-- carousel to show on small screens -->
+            <div class="row carousel-inner px-2" role="listbox" id="carousel-mobile">
+                <!-- Repeat product carousel items as needed -->
+                {% for item in related %}
+                    <div class="product carousel-item">
+                        <div class="product-card shadow">
+                            <div class="product-img">
+                                <img src="{{ item.image.url }}" class="img img-fluid img-thumpnail" alt="item.name">
+                                <button 
+                                    class="favourite" 
+                                    id="add-favourite-{{ product.id }}" 
+                                    data-product-id="{{ product.id }}" 
+                                    data-wishlist-added="{% if product.id in wishlist_products %}1{% else %}0{% endif %}">
+                                    <span class="material-symbols-outlined"
+                                        style="font-variation-settings: 'FILL' {% if product.id in wishlist_products %}1{% else %}0{% endif %};">
+                                        favorite
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="product-details">
+                                <h3 class="product-name raleway-medium">Baby {{ item.name }}</h3>
+                                <p class="d-flex justify-content-between align-items-center pb-1 m-0">
+                                    <span class="product-sex">{{ item.sex }}</span>
+                                    <span class="product-price raleway-medium">${{ item.price }}</span>
+                                </p>
+                                <div class="product-review">
+                                    <div class="review m-0 p-0">
+                                        <span class="material-symbols-outlined text-success">reviews</span>
+                                        <span class="text-muted poppins-medium">{{ item.rating }}</span>
+                                    </div>
+                                    <div class="rating">
+                                        <span class="raleway-medium"> ({{ item.reviews }} reviews)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-btn">
+                                <a href="{% url 'product_detail' slug=item.slug %}" class="view-details btn">View Details</a>
+                                <button class="add-to-cart btn" data-product-id="{{ product.id }}">
+                                    <span class="material-symbols-outlined">add_shopping_cart</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                <!-- ...repeat as needed... -->
+            </div>
+            <!-- Carousel Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#related-prod-carousel" data-bs-slide="prev">
+                <span class="material-symbols-outlined fs-2">arrow_back_ios</span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#related-prod-carousel" data-bs-slide="next">   
+                <span class="material-symbols-outlined fs-2">arrow_forward_ios</span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+    <!-- ===================== Related Products Section (Desktop) ===================== -->
+    <section class="related-products d-none d-md-block">
+        <div id="related-prod-carousel-large" class="container" data-bs-ride="false">
+            <h3 class="title raleway-medium">Related Products</h3>
+            <div class="row px-2 m-0" role="listbox">
+                {% for item in related %}
+                    <div class="product col col-md-6 col-lg-3">
+                        <div class="product-card shadow">
+                            <div class="product-img">
+                                <img src="{{ item.image.url }}" class="img img-fluid img-thumpnail" alt="Silicone Doll 1">
+                                <button class="favourite" id="add-favourite">
+                                    <span class="material-symbols-outlined">favorite</span>
+                                </button>
+                            </div>
+                            <div class="product-details">
+                                <h3 class="product-name raleway-medium">{{ item.name }}</h3>
+                                <p class="d-flex justify-content-between align-items-center pb-1 m-0">
+                                    <span class="product-sex">{{ item.sex }}</span>
+                                    <span class="product-price raleway-medium">${{ item.price }}</span>
+                                </p>
+                                <div class="product-review">
+                                    <div class="review m-0 p-0">
+                                        <span class="material-symbols-outlined text-success">reviews</span>
+                                        <span class="text-muted poppins-medium">{{ item.rating }}</span>
+                                    </div>
+                                    <div class="rating">
+                                        <span class="raleway-medium"> ({{ item.reviews }} reviews)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-btn">
+                                <a href="{% url 'product_detail' slug=item.slug %}" class="view-details btn">View Details</a>
+                                <button class="add-to-cart btn" data-product-id="{{ product.id }}">
+                                    <span class="material-symbols-outlined">add_shopping_cart</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                <!-- ...repeat as needed... -->
+            </div>
+        </div>
+    </section>
+    <!-- ===================== WHY CHOOSE US SECTION ===================== -->
+    <section class="why-us">
+        <div class="section-wrapper container">
+            <div class="row d-flex align-items-center gap-2 gap-md-0 p-md-5">
+                <div class="col col-12 col-md-6">
+                    <h3 class="section-title-1 raleway-semibold text-capitalize">Why Choose <br> Caroline Heuss?</h3>
+                    <div class="section-content">
+                        <div class="item item-1 raleway-regular">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 48;">favorite</span>
+                            Exeptional Care & Attention To Detail
+                        </div>
+                        <div class="item item-2 raleway-regular">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 48;">brush</span>
+                            100% Handcrafted Masterpieces
+                        </div>
+                        <div class="item item-3 raleway-regular">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 48;">health_metrics</span>
+                            Lifelike Skin Texture, Weight, and Movement
+                        </div>
+                        <div class="item item-4 raleway-regular">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 48;">globe_location_pin</span>
+                            Worldwide Shipping & Friendly Support
+                        </div>
+                        <div class="item item-5 raleway-regular">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 48;">sentiment_satisfied</span>
+                            Customer Satisfaction
+                        </div>
+                        <div class="item item-6 raleway-regular">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1, 'wght' 600, 'GRAD' 0, 'opsz' 48;">widgets</span>
+                            Custom Orders Available<div id="ajax-message" class="mt-2 raleway-regular"></div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-12 col-md-6">
+                    <div class="section-img">
+                        <img src="{% static 'images/woman_painting_baby.avif' %}" alt="woman painting a silicone baby doll" class="img img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        
+
+
+
+        $(document).ready(function () {
+            $('#add-to-cart-form').on('submit', function (e) {
+                e.preventDefault();
+
+                let quantity = $('#quantity').val();
+                let productId = $('#add-cart').data('product-id');
+
+                $.ajax({
+                    url: '{% url "cart:add_to_cart" %}',
+                    type: 'POST',
+                    data: {
+                        'quantity': quantity,
+                        'product_id': productId,
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            $('#ajax-message').html('<div class="text-success">Product added to cart!</div>');
+                            // Optional: update cart icon count
+                            $('#cart-count').text(response.cart_count);
+                        } else {
+                            $('#ajax-message').html('<div class="text-danger">' + response.error + '</div>');
+                        }
+                    },
+                    error: function () {
+                        $('#ajax-message').html('<div class="text-danger">Something went wrong. Try again.</div>');
+                    }
+                });
+            });
+
+
+            // function to add active class to 1st carosel item on related products page
+            $('#carousel-mobile').find('.carousel-item:first').addClass('active');
+        });
+
+
+
+        // Quantity buttons
+        document.getElementById('add-qty').addEventListener('click', () => {
+            const qty = document.getElementById('quantity');
+            qty.value = parseInt(qty.value) + 1;
+        });
+
+        document.getElementById('sub-qty').addEventListener('click', () => {
+            const qty = document.getElementById('quantity');
+            if (parseInt(qty.value) > 1) {
+                qty.value = parseInt(qty.value) - 1;
+            }
+        });
+
+        $(document).ready(function () {
+            $('.galerry_image').click(function () {
+                $('.galerry_image').css('opacity', '1');
+                imgUrl = $(this).attr('src');
+                $(this).css('opacity', '0.7');
+
+                // Fade out the main image, change src, then fade back in
+                $('#main-img').fadeOut(200, function () {
+                    $(this).attr('src', imgUrl).fadeIn(200);
+                });
+            })
+        })
+
+   </script>
+    <!-- ===================== WHY CHOOSE US SECTION END ===================== -->
+{% endblock  %}

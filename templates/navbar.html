@@ -1,0 +1,97 @@
+{% load static %}
+<!-- ===================== NAVBAR START ===================== -->
+    <nav class="navbar navbar-expand-md navbar-light d-flex align-items-center bg-white shadow-sm m-0 p-0">
+        <div class="nav-container container-fluid d-flex justify-content-between align-items-center">
+            <a href="{% url 'home' %}" class="navbar-brand">
+                <img src="{% static 'images/site-logo.avif' %}" class="img img-fluid" alt="Caroline Heuss Silicone Dolls">
+            </a>
+            <!-- Desktop Nav Links -->
+            <ul class="navbar-nav d-none d-md-flex gap-3 mb-0">
+                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'product_list' %}">Our Babies</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'blog' %}">Blog</a></li>             
+                <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'faq' %}">FAQ</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'terms' %}">Terms of Service</a></li>
+            </ul>
+            <!-- Navbar Icons -->
+            <div class="navbar-icons d-flex align-items-center gap-2 gap-md-4">
+                <a href="" class="nav-link"><span class="material-symbols-outlined d-inline-block fs-1">favorite</span></a>
+                <a href="{% url 'cart:cart_detail' %}" class="nav-link position-relative d-flex align-items-center">
+                    <span class="material-symbols-outlined fs-1" style="margin-right: 10px;">shopping_cart</span>
+                    <span class="badge bg-dark" style="position: absolute; top: -12px; right: -5px; border-radius: 10px; font-size: 10px;" id="cart-count">{{ cart_items_count }}</span>
+                </a>
+                <!-- Mobile Sidebar Toggle -->
+                <a class="nav-link d-md-none"><span class="material-symbols-outlined fs-1" id="sidebar_open">menu</span></a>
+            </div>
+        </div>
+    </nav>
+    <!-- Mobile Sidebar -->
+    <div class="container-fluid d-md-none" id="sidebar_con">
+        <div class="sidebar d-flex flex-column shadow-sm" id="sidebar">
+           <a href="{% url 'home' %}" class="navbar-brand py-2" style="width: 100%; border-bottom: 2px solid mediumseagreen;">
+                <img src="{% static 'images/site-logo.avif' %}" class="img img-fluid" alt="Caroline Heuss Silicone Dolls" style="width: 70%; height: 100px;">
+            </a>
+            <div class="sidebar_close">
+                <a class="nav-link d-md-none"><span class="material-symbols-outlined fs-1" id="sidebar_close_btn">close</span></a>
+            </div>
+            <ul class="navbar-nav gap-1 gap-md-3 m-0 p-0 pt-4">
+                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'product_list' %}">Our Babies</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'blog' %}">Blog</a></li>             
+                <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'faq' %}">FAQ</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'terms' %}">Terms of Service</a></li>
+            </ul>
+            <!-- Sidebar Social Links -->
+            <div class="social_links d-flex flex-row align-items-center gap-4">
+                <a href="https://www.facebook.com/" target="_blank" class="social-link"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.instagram.com/" target="_blank" class="social-link"><i class="fa-brands fa-square-instagram"></i></a>
+                <a href="https://www.youtube.com/" target="_blank" class="social-link"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="alert alert-light mx-auto p-0 py-1 text-center" id="alertBox" 
+        style="display: none;
+        position: fixed;
+        top: 20px;
+        left: calc(50% - 175px);
+        width: 350px;
+        max-width: 350px;
+        z-index: 999;
+        opacity: 1 !important; transform: translateY(0) !important;">
+    </div>
+
+
+
+<script>
+    $(document).ready(function name(params) {
+        let currentPath = window.location.pathname;
+
+        $('.nav-link').each(function () {
+        if ($(this).attr('href') === currentPath) {
+            $(this).attr('id', 'active')
+        }
+        });
+    })
+
+    let prevScrollPos = $(window).scrollTop();
+
+    $(window).on("scroll", function () {
+        let currentScrollPos = $(window).scrollTop();
+        
+        if (currentScrollPos > prevScrollPos) {
+        // Scrolling down
+        $(".navbar").css("top", "-100px"); // Adjust to hide
+        } else {
+        // Scrolling up
+        $(".navbar").css("top", "0");
+        }
+
+        prevScrollPos = currentScrollPos;
+    });
+</script>
+<!-- ===================== NAVBAR END ===================== -->
+    

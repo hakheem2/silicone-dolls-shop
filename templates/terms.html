@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block links %}
+
+    <title>FAQs | Caroline Heuss Silicone Dolls</title>
+    <style>
+        .terms-banner{
+            background: linear-gradient(160deg, #f3d1c5, #8fbc8f);
+            .row{ 
+                padding: 70px 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: #fff;
+
+                h1{
+                    font-family: sans-serif;
+                    font-size: 3rem;
+                    font-weight: 700;
+                    color: #fff;
+                    text-transform: uppercase;
+                }
+                p{
+                    font-family: 'raleway', sans-serif;
+                    color: #fff;
+                    width: 98%;
+                    font-size: 1.2rem;
+                }
+            }
+        }
+        .terms-section{
+            .container { 
+                margin-top: 60px;
+                padding: 30px;
+                background-color: white;
+                border-radius: 12px;
+            }
+            h1{
+                font-weight: 700;
+            }
+            h2 {
+                font-family: sans-serif;
+                color: mediumseagreen;
+                font-weight: 600;
+                font-size: 2rem;
+                padding-top: 50px;
+            }
+            p, li {
+                color: #555;
+                line-height: 1.6;
+                font-size: 1.1rem;
+            }
+        }
+        
+
+        @media (min-width: 768px){
+            .terms-banner .row{
+                padding: 100px 20px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    {# Include the navigation bar #}
+    {% include "navbar.html" %}
+
+    <section class="terms-banner">
+        <div class="container p-0">
+            <div class="row">
+                <div class="col-11 col-md-6 d-flex flex-column">     
+                    <h1 class="mb-4">Privacy Policy</h1>
+                    <p>
+                        At <strong>Caroline Heuss</strong>, we care deeply about the privacy of our customers and visitors. This Privacy Policy explains how we collect, use, and protect your personal information.
+                    </p>
+                </div>
+                <div class="col-11 col-md-6">
+                    <img src="{% static 'images/terms-banner.avif' %}" class="img-fluid" alt="">
+                </div>
+            </div>
+        </div>  
+    </section>
+    <section class="terms-section">
+        <div class="container ">
+            <!-- Privacy Policy Section -->
+
+            <!-- Information We Collect -->
+            <h2>Information We Collect</h2>
+            <ul>
+                <li>Your name, email, phone number, and address when you place an order or contact us.</li>
+                <li>Payment details processed securely by third-party gateways like Stripe or PayPal.</li>
+                <li>Browsing behavior such as page visits, IP address, device type, and cookies.</li>
+            </ul>
+
+            <!-- How We Use Your Information -->
+            <h2>How We Use Your Information</h2>
+            <p>
+                Your data is used to:
+            </p>
+            <ul>
+                <li>Fulfill and manage orders and deliveries.</li>
+                <li>Provide customer support and order updates.</li>
+                <li>Improve our website and services.</li>
+                <li>Send you special offers, newsletters, or updates (only with your consent).</li>
+            </ul>
+
+            <!-- Sharing of Information -->
+            <h2>Sharing of Information</h2>
+            <p>
+                We do not sell or rent your personal information. We only share necessary data with:
+            </p>
+            <ul>
+                <li>Trusted payment processors (e.g., Stripe, PayPal).</li>
+                <li>Shipping partners for order delivery.</li>
+            </ul>
+
+            <!-- Data Security -->
+            <h2>Data Security</h2>
+            <p>
+                We take security seriously. Our website uses SSL encryption, and we limit access to your data internally. However, no online system is 100% secure.
+            </p>
+
+            <!-- Cookies -->
+            <h2>Cookies</h2>
+            <p>
+                We use cookies to improve your browsing experience, analyze traffic, and provide essential features like cart storage.
+            </p>
+
+            <!-- Your Rights -->
+            <h2>Your Rights</h2>
+            <p>
+                You may request to update, correct, or delete your personal data by contacting us directly at <strong>info@carolineheuss.com</strong>.
+            </p>
+
+            <!-- Policy Changes -->
+            <h2>Policy Changes</h2>
+            <p>
+                This policy may be updated from time to time. Any changes will be reflected on this page.
+            </p>
+
+            <hr class="my-5">
+
+            <!-- Terms & Conditions Section -->
+            <h1 class="mb-4">Terms & Conditions</h1>
+
+            <!-- Introduction -->
+            <h2>1. Introduction</h2>
+            <p>
+                Welcome to <strong>Caroline Heuss</strong>. By using our website, you agree to the following terms and conditions. Please read them carefully.
+            </p>
+
+            <!-- Orders & Payments -->
+            <h2>2. Orders & Payments</h2>
+            <p>
+                All orders placed are subject to availability. Payments must be completed before shipping. We accept PayPal, Stripe, and credit/debit cards.
+            </p>
+
+            <!-- Shipping -->
+            <h2>3. Shipping</h2>
+            <p>
+                We ship within the time stated on each product page. International shipping may take longer and could incur customs fees, which are your responsibility.
+            </p>
+
+            <!-- Returns & Refunds -->
+            <h2>4. Returns & Refunds</h2>
+            <p>
+                You may return your item within 14 days of receiving it, provided it is unused and in original packaging. Custom or used dolls are non-refundable.
+            </p>
+
+            <!-- Intellectual Property -->
+            <h2>5. Intellectual Property</h2>
+            <p>
+                All content on this website, including images, texts, and designs, are owned by Caroline Heuss. Reuse or copying without permission is prohibited.
+            </p>
+
+            <!-- Limitation of Liability -->
+            <h2>6. Limitation of Liability</h2>
+            <p>
+                We are not liable for any indirect or consequential loss related to use of our website or products.
+            </p>
+
+            <!-- Governing Law -->
+            <h2>7. Governing Law</h2>
+            <p>
+                These terms are governed by and construed in accordance with the laws of the United States of America.
+            </p>
+
+            <!-- Contact Us -->
+            <h2>8. Contact Us</h2>
+            <p>
+                For any questions, email us at <strong>support@carolineheuss.com</strong> or use our contact form on the website.
+            </p>
+        </div>
+    </section>
+    
+    
+{% endblock %}

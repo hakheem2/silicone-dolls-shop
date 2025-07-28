@@ -1,0 +1,369 @@
+{% load static %}
+<style>
+
+    /* body {
+    background-image: linear-gradient(#4A148C, #E53935);
+    background-repeat: no-repeat;
+    color: #000;
+    overflow-x: hidden
+} */
+.testimonial-section{
+    overflow-x: hidden !important;
+
+    a {
+        text-decoration: none !important;
+        color: inherit
+    }
+
+    a:hover {
+        color: #455A64
+    }
+
+
+    .rating-box {
+        width: 100%;
+        p{
+            font-size: 2rem;
+            color: #888;
+        }
+        span{
+            font-size: 4rem;
+            color:  #FBC02D;
+        }
+        i{
+            font-size: 4rem;
+            line-height: 0;
+        }
+    }
+
+    .rating-label {
+        font-weight: bold;
+    }
+
+    .rating-bar {
+        width: 300px;
+        padding: 8px;
+        border-radius: 5px
+    }
+
+    .bar-container {
+        width: 100%;
+        background-color: #f1f1f1;
+        text-align: center;
+        color: white;
+        border-radius: 20px;
+        cursor: pointer;
+        margin-bottom: 5px;
+    }
+
+    .bar-5 {
+        width: 80%;
+        height: 13px;
+        background-color: #FBC02D;
+        border-radius: 20px;
+    }
+
+    .bar-4 {
+        width: 30%;
+        height: 13px;
+        background-color: #FBC02D;
+        border-radius: 20px
+    }
+
+    .bar-3 {
+        width: 12%;
+        height: 13px;
+        background-color: #FBC02D;
+        border-radius: 20px;
+    }
+
+    .bar-2 {
+        width: 4%;
+        height: 13px;
+        background-color: #FBC02D;
+        border-radius: 20px;
+    }
+
+    .bar-1 {
+        width: 0%;
+        height: 13px;
+        background-color: #FBC02D;
+        border-radius: 20px;
+    }
+
+    td {
+        padding-bottom: 10px;
+    }
+
+    .star-active {
+        color: #FBC02D;
+    }
+
+    .star-active:hover {
+        color: #F9A825;
+        cursor: pointer;
+    }
+
+    .star-inactive {
+        color: #CFD8DC;
+    }
+
+    .blue-text {
+        color: #0091EA;
+    }
+
+    .content {
+        font-size: 1.1rem;
+    }
+
+    .profile-pic {
+        width: 80px;
+        height: 80px;
+        border-radius: 100%;
+    }
+
+    .pic {
+        width: 80px;
+        height: 80px;
+        margin-right: 10px;
+    }
+
+    .vote {
+        cursor: pointer;
+    }
+
+    @media (min-width: 768px){
+        .content{
+            font-size: 1.02rem;
+        }
+        .wrapper{
+            padding-right: 40px !important;
+            border-right: 2px solid #aeaeae;
+        }
+    }
+}
+
+</style>
+<section class="testimonial-section">
+    <div class="container px-0">
+        <div class="row bg-white rounded shadow-sm mb-5 px-1" style="padding: 100px 40px;">
+            <div class="header py-4 text-center">
+                <span class="bg-warning text-white rounded-pill poppins-semibold px-3 py-1" style="font-size: 1rem; border: 2px solid #FBC02D;">REVIEWS</span>
+            </div>
+            <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
+                <div class="wrapper px-sm-0">
+                    <div class="rating-box d-flex justify-content-center mx-auto mx-md-0 mb-4">
+                        <p class="poppins-bold"><span class="">4.4 /</span>5<i class="fa fa-star star-active mx-1 ps-2"></i></p> 
+                    </div>
+                    <div class="rating-bar0 justify-content-center px-1 pe-md-4">
+                        <table class="text-left mx-auto">
+                            <tr>
+                                <td class="rating-label">Excellent</td>
+                                <td class="rating-bar">
+                                    <div class="bar-container">
+                                        <div class="bar-5"></div>
+                                    </div>
+                                </td>
+                                <td class="text-right">123</td>
+                            </tr>
+                            <tr>
+                                <td class="rating-label">Good</td>
+                                <td class="rating-bar">
+                                    <div class="bar-container">
+                                        <div class="bar-4"></div>
+                                    </div>
+                                </td>
+                                <td class="text-right">23</td>
+                            </tr>
+                            <tr>
+                                <td class="rating-label">Average</td>
+                                <td class="rating-bar">
+                                    <div class="bar-container">
+                                        <div class="bar-3"></div>
+                                    </div>
+                                </td>
+                                <td class="text-right">10</td>
+                            </tr>
+                            <tr>
+                                <td class="rating-label">Poor</td>
+                                <td class="rating-bar">
+                                    <div class="bar-container">
+                                        <div class="bar-2"></div>
+                                    </div>
+                                </td>
+                                <td class="text-right">3</td>
+                            </tr>
+                            <tr>
+                                <td class="rating-label">Terrible</td>
+                                <td class="rating-bar">
+                                    <div class="bar-container">
+                                        <div class="bar-1"></div>
+                                    </div>
+                                </td>
+                                <td class="text-right">0</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 d-md-none">
+            <div class="col-12 col-md-6">
+                <h3 class="raleway-semibold text-center text-md-start py-3 fs-4" style="font-size: 1.7rem;">What our cliets are saying</h3>
+                <div class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row mt-4">
+                                <div class="d-flex justify-content-start raleway-medium">
+                                    <img class="profile-pic mx-3" src="{% static 'images/avatar.jpg' %}">
+                                    <div class="">
+                                        <h5 class="mt-1 mb-0 fs-5">Trista</h5>
+                                        <p class="text-start my-0">
+                                            <span class="text-muted">4.0</span> <span class="fa fa-star star-active ml-3"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-inactive"></span>
+                                        </p>
+                                        <p class="text-muted my-0 fs-6">10 - Sept</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row text-start raleway-medium px-3 pt-2">
+                                <p class="content">The doll looks real and feels very soft it came well packed and clean the hair is nice and the body is easy to hold I didn’t expect it to be this good but I’m really happy with it and I’ll probably order another one.</p>
+                            </div>
+                            <div class="row ps-3 pe-4 pt-2 d-flex justify-content-end">
+                                <p class="like vote" style="width: fit-content; border-right: 2px solid #777;"> 
+                                    <span class="material-symbols-outlined fs-1 text-primary">thumb_up</span><span class="text-muted ps-2 h-4">20</span>
+                                </p>
+                                <div class="unlike vote" style="width: fit-content;"> 
+                                    <span class="material-symbols-outlined fs-1 text-warning">thumb_down</span><span class="text-muted ps-2 h-4">4</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="row mt-4">
+                                <div class="d-flex justify-content-start raleway-medium">
+                                    <img class="profile-pic mx-3" src="{% static 'images/avatar.jpg' %}">
+                                    <div class="">
+                                        <h3 class="mt-2 mb-0 fs-5">Madison</h3>
+                                        <p class="text-start my-0">
+                                            <span class="text-muted">4.0</span> <span class="fa fa-star star-active ml-3"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-inactive"></span>
+                                        </p>
+                                        <p class="text-muted my-0 fs-6">10 - Sept</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row text-start raleway-medium px-3 pt-2">
+                                <p class="content">I bought this doll for my little sister and she was so happy she takes it everywhere even to bed the doll feels soft like real skin and it fits baby clothes perfectly the delivery was also fast and I had no problems at all with the service.</p>
+                            </div>
+                            <div class="row ps-3 pe-4 pt-2 d-flex justify-content-end">
+                                <p class="like vote" style="width: fit-content; border-right: 2px solid #777;"> 
+                                    <span class="material-symbols-outlined fs-1 text-primary">thumb_up</span><span class="text-muted ps-2 h-4">20</span>
+                                </p>
+                                <div class="unlike vote" style="width: fit-content;"> 
+                                    <span class="material-symbols-outlined fs-1 text-warning">thumb_down</span><span class="text-muted ps-2 h-4">4</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="row mt-4">
+                                <div class="d-flex justify-content-start raleway-medium">
+                                    <img class="profile-pic mx-3" src="{% static 'images/avatar.jpg' %}">
+                                    <div class="">
+                                        <h3 class="mt-2 mb-0 fs-5">Angela</h3>
+                                        <p class="text-start my-0">
+                                            <span class="text-muted">4.0</span> <span class="fa fa-star star-active ml-3"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-active"></span>
+                                        </p>
+                                        <p class="text-muted my-0 fs-6">10 - Sept</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row text-start raleway-medium px-3 pt-2">
+                                <p class="content">The quality is great for the price the doll is soft and smooth it looks like a newborn baby I showed it to my mom and she was shocked she thought it was real I really love it and I might get another one for my cousin</p>
+                            </div>
+                            <div class="row ps-3 pe-4 pt-2 d-flex justify-content-end">
+                                <p class="like vote" style="width: fit-content; border-right: 2px solid #777;"> 
+                                    <span class="material-symbols-outlined fs-1 text-primary">thumb_up</span><span class="text-muted ps-2 h-4">20</span>
+                                </p>
+                                <div class="unlike vote" style="width: fit-content;"> 
+                                    <span class="material-symbols-outlined fs-1 text-warning">thumb_down</span><span class="text-muted ps-2 h-4">4</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="row mt-4">
+                                <div class="d-flex justify-content-start raleway-medium">
+                                    <img class="profile-pic mx-3" src="{% static 'images/avatar.jpg' %}">
+                                    <div class="">
+                                        <h3 class="mt-2 mb-0 fs-5">Mine</h3>
+                                        <p class="text-start my-0">
+                                            <span class="text-muted">4.0</span> <span class="fa fa-star star-active ml-3"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-inactive"></span> <span class="fa fa-star star-inactive"></span>
+                                        </p>
+                                        <p class="text-muted my-0 fs-6">10 - Sept</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row text-start raleway-medium px-3 pt-2">
+                                <p class="content">I’ve bought dolls from other shops before but this one is my favorite the face is so cute and the hands and feet are soft the customer service was friendly and helped me choose the right one everything came in perfect condition and I had no stress.</p>
+                            </div>
+                            <div class="row ps-3 pe-4 pt-2 d-flex justify-content-end">
+                                <p class="like vote" style="width: fit-content; border-right: 2px solid #777;"> 
+                                    <span class="material-symbols-outlined fs-1 text-primary">thumb_up</span><span class="text-muted ps-2 h-4">20</span>
+                                </p>
+                                <div class="unlike vote" style="width: fit-content;"> 
+                                    <span class="material-symbols-outlined fs-1 text-warning">thumb_down</span><span class="text-muted ps-2 h-4">4</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="row mt-4">
+                                <div class="d-flex justify-content-start raleway-medium">
+                                    <img class="profile-pic mx-3" src="{% static 'images/avatar.jpg' %}">
+                                    <div class="">
+                                        <h3 class="mt-2 mb-0 fs-5">Melisa</h3>
+                                        <p class="text-start my-0">
+                                            <span class="text-muted">4.0</span> <span class="fa fa-star star-active ml-3"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-inactive"></span>
+                                        </p>
+                                        <p class="text-muted my-0 fs-6">10 - Sept</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row text-start raleway-medium px-3 pt-2">
+                                <p class="content">I was nervous to order at first but when the doll arrived I was surprised it’s soft and lifelike and the eyes are bright the clothes were nice too it came quickly and packed well I’m going to tell my friends about this shop for sure.</p>
+                            </div>
+                            <div class="row ps-3 pe-4 pt-2 d-flex justify-content-end">
+                                <p class="like vote" style="width: fit-content; border-right: 2px solid #777;"> 
+                                    <span class="material-symbols-outlined fs-1 text-primary">thumb_up</span><span class="text-muted ps-2 h-4">20</span>
+                                </p>
+                                <div class="unlike vote" style="width: fit-content;"> 
+                                    <span class="material-symbols-outlined fs-1 text-warning">thumb_down</span><span class="text-muted ps-2 h-4">4</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="row mt-4">
+                                <div class="d-flex justify-content-start raleway-medium">
+                                    <img class="profile-pic mx-3" src="{% static 'images/avatar.jpg' %}">
+                                    <div class="">
+                                        <h3 class="mt-2 mb-0 fs-5 ">Belma</h3>
+                                        <p class="text-start my-0">
+                                            <span class="text-muted">4.0</span> <span class="fa fa-star star-active ml-3"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-active"></span> <span class="fa fa-star star-inactive"></span>
+                                        </p>
+                                        <p class="text-muted my-0 fs-6">10 - Sept</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row text-start raleway-medium px-3 pt-2">
+                                <p class="content">This doll looks and feels just like a real baby when I hold it it sits well in my arms the weight is perfect and the skin is not too shiny I was not sure at first but I’m glad I ordered it it’s better than expected </p>
+                            </div>
+                            <div class="row ps-3 pe-4 pt-2 d-flex justify-content-end">
+                                <p class="like vote" style="width: fit-content; border-right: 2px solid #777;"> 
+                                    <span class="material-symbols-outlined fs-1 text-primary">thumb_up</span><span class="text-muted ps-2 h-4">20</span>
+                                </p>
+                                <div class="unlike vote" style="width: fit-content;"> 
+                                    <span class="material-symbols-outlined fs-1 text-warning">thumb_down</span><span class="text-muted ps-2 h-4">4</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

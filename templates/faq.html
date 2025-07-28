@@ -1,0 +1,659 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block links %}
+	<title>FAQs | Caroline Heuss Silicone Dolls</title>
+	<style>
+		:root {
+			/* Color Variables */
+			--prim-color: #d77546;
+			--sec-color: #fff6ed;
+			--sec-color-2: #f3d1c5;
+			--msg-color: #2e8b57;
+			--dsg-color: #20b2aa;
+			--lsg-color: #8fbc8f;
+			--dodger-blue: #1e90ff;
+			--text-dark: rgba(0, 0, 0, 0.9);
+			--white-color: #fff;
+			--light-dark: rgba(0, 0, 0, 0.5);
+			--orange-color: #d77647;
+			--orange-color-2: #ff8c00;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+
+		/* Remove default button/input shadows and outlines */
+		button, input, select, textarea {
+			box-shadow: none;
+			outline: none;
+
+			&:focus {
+				box-shadow: none !important;
+				outline: none !important;
+			}
+		}
+
+		/* Remove underline from links */
+		a {
+			text-decoration: none !important;
+			color: var(--text-dark) !important;
+		}
+
+		body{
+			background-color: var();
+		}
+
+		.faq-banner {
+			background: linear-gradient(160deg, var(--sec-color-2), var(--lsg-color));
+			padding: 40px 0;
+		}
+				.faq-banner .text-block h2 {
+					font-weight: 700;
+					font-size: 28px;
+					margin-bottom: 10px;
+			}
+
+			.faq-banner .text-block p {
+				color: #333;
+				font-size: 1.2rem;
+				line-height: 1.5;
+				padding: 10px 0;
+				border-radius: 4px;
+				display: inline-block;
+				max-width: 100%;
+			}
+
+			.faq-banner .faq-img {
+				max-width: 500px;
+				width: 100%;
+				height: 450px;
+			}
+
+
+
+
+
+		.faq-categorys{
+			padding: 50px 0;
+			.faq-header {
+				margin-top: 40px;
+			}
+
+			.faq-search input {
+				border-radius: 0;
+			}
+
+			.faq-category {
+				padding: 30px 20px;
+				text-align: center;
+				border: 1px solid #ddd;
+				background-color: #f9f9f9;
+				transition: 0.3s ease-in-out;
+				height: 100%;
+			}
+
+			.faq-category:hover {
+				background-color: #f0f0f0;
+				cursor: pointer;
+			}
+
+			.faq-category i {
+				font-size: 32px;
+				margin-bottom: 10px;
+
+				i{
+					color: var(--msg-color) !important;
+				}
+			}
+
+			.faq-popular ul,
+			.faq-links ul {
+				list-style: none;
+				padding-left: 0;
+			}
+
+			.faq-popular ul li,
+			.faq-links ul li {
+				margin-bottom: 10px;
+				font-size: 15px;
+			}
+
+			.faq-links ul li a {
+				text-decoration: none;
+			}
+
+			.faq-links ul li a:hover {
+				text-decoration: underline;
+			}
+
+			.faq-icon-box {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+
+			.contact-options {
+				display: flex;
+				justify-content: center;
+				gap: 10px;
+			}
+
+			.contact-options div {
+				flex: 1;
+			}
+
+		}
+
+
+
+		.faq-questions{
+			margin: 70px 0;
+			.custom-input {
+				border-radius: 12px;
+				padding: 12px 16px;
+				border: 1px solid #ccc;
+				transition: border-color 0.3s, box-shadow 0.3s;
+				background: #fff;
+				box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+			}
+
+			.custom-input:focus {
+				border-color: #0d6efd;
+				box-shadow: 0 0 0 0.2rem rgba(13,110,253,0.2);
+				outline: none;
+			}
+
+			.custom-input:hover {
+				border-color: #0d6efd;
+			}
+
+			.accordion-button {
+				border-radius: 8px !important;
+				font-weight: 500;
+			}
+
+			.accordion-body {
+				font-size: 15px;
+				color: #333;
+				background: #fff;
+				border-radius: 0 0 8px 8px;
+				padding: 1rem;
+			}
+
+			.accordion-item {
+				border: none;
+				box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+				border-radius: 8px;
+				background: #fff;
+			}
+		}
+	</style>
+{% endblock %}
+{% block content %}
+    {# Include the navigation bar #}
+    {% include "navbar.html" %}
+
+	<!-- FAQ Banner Section -->
+	<section class="faq-banner">
+		<div class="container">
+			<div class="row align-items-center text-white">
+				<!-- Left text block -->
+				<div class="col-md-6 text-block">
+					<h2 class="fs-2">Got Questions? We’re Here to Help</h2>
+					<p class="text-white">
+						Whether you’re a new collector, ordering your first baby, or curious about our process, you’ll find helpful answers to our most frequently asked questions below.
+						If you can’t find what you’re looking for, feel free to contact us.
+					</p>
+				</div>
+				<!-- Right image block -->
+				<div class="col-md-6 image-block text-center">
+					<img src="{% static 'images/faq-banner.svg' %}" alt="FAQ illustration" class="img-fluid faq-img">
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- FAQ Header Section -->
+	<section class="faq-categorys">
+		<div class="container faq-header">
+			<div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
+				<div>
+					<h2>Frequently Asked Questions</h2>
+					<p class="text-muted">There are <strong>165 articles</strong> in our base.</p>
+				</div>
+				<div class="faq-search">
+					<input type="text" class="form-control" placeholder="Find pages by entering name in the search box">
+				</div>
+			</div>
+
+			<!-- FAQ Categories Section -->
+			
+			<div class="row g-3">
+				<!-- General Category -->
+				<div class="col-md-3 col-6">
+					<a href="#faq-questions" class="text-decoration-none">
+						<div class="faq-category">
+							<i class="fas fa-info-circle text-success"></i>
+							<div>General</div>
+						</div>
+					</a>
+				</div>
+				<!-- Delivery Category -->
+				<div class="col-md-3 col-6">
+					<a href="{% url 'terms' %}" class="text-decoration-none">
+						<div class="faq-category">
+							<i class="fas fa-truck text-success"></i>
+							<div>Delivery</div>
+						</div>
+					</a>
+				</div>
+				<!-- Order Issues Category -->
+				<div class="col-md-3 col-6">
+					<a href="{% url 'terms' %}" class="text-decoration-none">
+						<div class="faq-category">
+							<i class="fas fa-shopping-cart text-success"></i>
+							<div>Order Issues</div>
+						</div>
+					</a>
+				</div>
+				<!-- Products & Services Category -->
+				<div class="col-md-3 col-6">
+					<a href="{% url 'terms' %}" class="text-decoration-none">
+						<div class="faq-category">
+							<i class="fas fa-box-open text-success"></i>
+							<div>Products & Services</div>
+						</div>
+					</a>
+				</div>
+				<!-- Payments Category -->
+				<div class="col-md-3 col-6">
+					<a href="{% url 'terms' %}" class="text-decoration-none">
+						<div class="faq-category">
+							<i class="fas fa-credit-card text-success"></i>
+							<div>Payments</div>
+						</div>
+					</a>
+				</div>
+				<!-- Returns & Refunds Category -->
+				<div class="col-md-3 col-6">
+					<a href="{% url 'terms' %}" class="text-decoration-none">
+						<div class="faq-category">
+							<i class="fas fa-undo text-success"></i>
+							<div>Returns & Refunds</div>
+						</div>
+					</a>
+				</div>
+				<!-- Technical Issues Category -->
+				<div class="col-md-3 col-6">
+					<a href="{% url 'terms' %}" class="text-decoration-none">
+						<div class="faq-category">
+							<i class="fas fa-cogs text-success"></i>
+							<div>Technical Issues</div>
+						</div>
+					</a>
+				</div>
+				<!-- Contact Options -->
+				<div class="col-md-3 col-6">
+					<div class="faq-category contact-options">
+						<a href="mailto:support@carolineheusssiliconedolls.com" class="text-decoration-none" style="border-right: 2px solid #aeaeae;">
+							<div class="text-center pe-3">
+								<i class="fas fa-envelope text-success"></i>
+								<div>Email us</div>
+							</div>
+						</a>
+						<a href="tel:+13233754195">
+							<div class="text-center ps-2">
+								<i class="fas fa-phone text-success"></i>
+								<div>Call us</div>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	 </section>
+	
+	<section class="py-5 faq-questions" id="faq-questions" style="background: #f7f8fc;"></section>
+		<div class="container">
+			<!-- FAQ Title -->
+			<h2 class="text-center mb-4 fw-bold">Frequently Asked Questions</h2>
+			<p class="text-center mb-5">Got questions about our silicone baby dolls? Find clear, honest answers below. Still need help? Contact us directly using the form at the bottom.</p>
+
+			<div class="row">
+				<!-- Left Column -->
+				<div class="col-md-6">
+					<div class="accordion" id="faqAccordion1">
+						<!-- FAQ 1 -->
+						<div class="accordion-item mb-3">
+							<h2 class="accordion-header">
+								<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+									What are silicone baby dolls made from?
+								</button>
+							</h2>
+							<div id="faq1" class="accordion-collapse collapse show">
+								<div class="accordion-body">
+									Our dolls are made from soft, medical-grade silicone that feels like real skin. It's safe, flexible, and long-lasting with proper care.
+								</div>
+							</div>
+						</div>
+
+						<!-- FAQ 2–10 (Collapsed for space, same structure as above) -->
+						<div class="accordion-item mb-3">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+									Are your silicone dolls safe for children?
+								</button>
+							</h2>
+							<div id="faq2" class="accordion-collapse collapse">
+								<div class="accordion-body">
+									Yes! While recommended for ages 3 and up, they’re best suited for collectors or gentle play due to their handcrafted and delicate features.
+								</div>
+							</div>
+						</div>
+
+						<!-- Continue FAQs 3 to 10 here... -->
+						<div class="accordion-item mb-3">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+									How do I clean a silicone baby doll?
+								</button>
+							</h2>
+							<div id="faq3" class="accordion-collapse collapse">
+								<div class="accordion-body">
+									Use warm water and a mild baby-safe soap. Avoid alcohol-based or scented products. Pat dry with a soft towel and never rub harshly.
+								</div>
+							</div>
+						</div>
+
+						<!-- FAQs 4–10 similar... -->
+						<!-- FAQ 10 -->
+						<div class="accordion-item mb-3">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq10">
+									Can I get a custom doll with specific features?
+								</button>
+							</h2>
+							<div id="faq10" class="accordion-collapse collapse">
+								<div class="accordion-body">
+									Absolutely! We offer full customization including gender, skin tone, eye color, and hair type. Just leave us a note when ordering or fill the contact form below.
+								</div>
+							</div>
+						</div>
+
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqEight">
+									How do I properly clean and store my silicone doll?
+								</button>
+							</h2>
+							<div id="faqEight" class="accordion-collapse collapse">
+								<div class="accordion-body">
+									Clean your silicone doll with lukewarm water and mild soap, then dry thoroughly. Store in a cool, dry place, ideally wrapped in a soft cloth or blanket.
+								</div>
+							</div>
+						</div>
+
+						<!-- 9 -->
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqNine">
+									Are your silicone dolls safe for children to play with?
+								</button>
+							</h2>
+							<div id="faqNine" class="accordion-collapse collapse">
+								<div class="accordion-body">
+									Our silicone dolls are designed for adult collectors and may not be suitable for young children due to their realistic features and delicate craftsmanship.
+								</div>
+							</div>
+						</div>
+
+						<!-- 10 -->
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTen">
+									Can I choose the gender and skin tone of my silicone baby doll?
+								</button>
+							</h2>
+							<div id="faqTen" class="accordion-collapse collapse">
+								<div class="accordion-body">
+									Yes! We offer full customization options for gender, skin tone, eye color, and more so you can personalize your doll to your liking.
+								</div>
+							</div>
+						</div>
+
+						<!-- 11 -->
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqEleven">
+									What materials are used in making your silicone dolls?
+								</button>
+							</h2>
+							<div id="faqEleven" class="accordion-collapse collapse">
+								<div class="accordion-body">
+									Our dolls are made using high-grade platinum silicone and hand-painted with non-toxic paints to ensure durability, safety, and ultra-realistic skin textures.
+								</div>
+							</div>
+						</div>
+
+						<!-- 12 -->
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwelve">
+									How long does it take to receive a custom silicone doll order?
+								</button>
+							</h2>
+							<div id="faqTwelve" class="accordion-collapse collapse">
+								<div class="accordion-body">
+									Custom orders typically take 3 to 6 weeks for production depending on complexity. Once completed, shipping time varies based on your location.
+								</div>
+							</div>
+						</div>
+
+						<div class="accordion-item mb-3">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq11">
+									Are your dolls anatomically correct?
+								</button>
+							</h2>
+							<div id="faq11" class="accordion-collapse collapse">
+								<div class="accordion-body">
+									Yes, our full-body dolls are anatomically accurate. We also offer gender-neutral or cloth-bodied options based on your preference and budget.
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<!-- Right Column -->
+				<div class="col-md-6">
+					<div class="accordion" id="faqAccordion2">
+						<!-- FAQs 11–20 -->
+						<div class="accordion-item mb-3">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq11">
+									Are your dolls anatomically correct?
+								</button>
+							</h2>
+							<div id="faq11" class="accordion-collapse collapse">
+								<div class="accordion-body">
+									Yes, our full-body dolls are anatomically accurate. We also offer gender-neutral or cloth-bodied options based on your preference and budget.
+								</div>
+							</div>
+						</div>
+
+						<!-- Continue FAQs 12 to 20 -->
+						<div class="accordion-item mb-3">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq12">
+									How long does it take to receive a custom doll?
+								</button>
+							</h2>
+							<div id="faq12" class="accordion-collapse collapse">
+								<div class="accordion-body">
+									Custom orders usually take 3–6 weeks. We’ll update you through each step of the process and send preview photos before shipping your doll.
+								</div>
+							</div>
+						</div>
+
+						<!-- FAQs 13–20 here... -->
+						<div class="accordion-item mb-3">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq20">
+									Can I return or exchange my doll?
+								</button>
+							</h2>
+							<div id="faq20" class="accordion-collapse collapse">
+								<div class="accordion-body">
+									Since dolls are made to order, we only accept returns for defects or shipping damages. Contact us within 48 hours of receiving your order.
+								</div>
+							</div>
+						</div>
+
+						<!-- 13 -->
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqThirteen">
+									Can I bathe my silicone baby doll in water?
+								</button>
+							</h2>
+							<div id="faqThirteen" class="accordion-collapse collapse">
+								<div class="accordion-body">
+									Yes, our full-body silicone dolls are waterproof and safe for bathing. However, avoid submerging cloth-bodied dolls or using harsh chemicals during cleaning.
+								</div>
+							</div>
+						</div>
+
+						<!-- 14 -->
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFourteen">
+									Do silicone dolls feel like real babies?
+								</button>
+							</h2>
+							<div id="faqFourteen" class="accordion-collapse collapse">
+								<div class="accordion-body">
+									Yes, our dolls are made with soft, flexible silicone and weighted realistically to mimic the feel of a newborn baby when held or dressed.
+								</div>
+							</div>
+						</div>
+
+						<!-- 15 -->
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqFifteen">
+									Can I order a silicone doll with rooted hair?
+								</button>
+							</h2>
+							<div id="faqFifteen" class="accordion-collapse collapse">
+								<div class="accordion-body">
+									Absolutely. You can choose between hand-rooted mohair, synthetic hair, or bald options when customizing your doll during the ordering process.
+								</div>
+							</div>
+						</div>
+
+						<!-- 16 -->
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqSixteen">
+									Are your dolls anatomically correct?
+								</button>
+							</h2>
+							<div id="faqSixteen" class="accordion-collapse collapse">
+								<div class="accordion-body">
+									Yes, many of our full-body silicone dolls are anatomically correct. You can request this feature during checkout or choose from gender-neutral options.
+								</div>
+							</div>
+						</div>
+
+						<!-- 17 -->
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqSeventeen">
+									What happens if my doll gets damaged in shipping?
+								</button>
+							</h2>
+							<div id="faqSeventeen" class="accordion-collapse collapse">
+								<div class="accordion-body">
+									We carefully pack every doll, but if yours arrives damaged, please contact us within 48 hours with photos and we’ll arrange a replacement or refund.
+								</div>
+							</div>
+						</div>
+
+						<!-- 18 -->
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqEighteen">
+									Do you offer silicone doll accessories?
+								</button>
+							</h2>
+							<div id="faqEighteen" class="accordion-collapse collapse">
+								<div class="accordion-body">
+									Yes, we provide a wide range of accessories including clothing, pacifiers, bottles, diapers, blankets, and more, all designed to fit our silicone dolls.
+								</div>
+							</div>
+						</div>
+
+						<!-- 19 -->
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqNineteen">
+									Do you ship silicone dolls internationally?
+								</button>
+							</h2>
+							<div id="faqNineteen" class="accordion-collapse collapse">
+								<div class="accordion-body">
+									Yes, we ship worldwide with tracking. International shipping times may vary depending on customs, but we ensure secure packaging and reliable delivery.
+								</div>
+							</div>
+						</div>
+
+						<!-- 20 -->
+						<div class="accordion-item">
+							<h2 class="accordion-header">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqTwenty">
+									Can I return my doll if I’m not satisfied?
+								</button>
+							</h2>
+							<div id="faqTwenty" class="accordion-collapse collapse">
+								<div class="accordion-body">
+									Due to the custom nature of our products, returns are generally not accepted unless the item is defective or significantly different from your order specifications.
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Contact Form -->
+			<div class="row mt-5">
+				<div class="col-lg-8 mx-auto">
+					<h4 class="text-center fw-bold mb-3">Still Have a Question?</h4>
+					<p class="text-center mb-4">Send us a message and we’ll respond as soon as possible. We’re here to help!</p>
+
+					<form>
+						<div class="row g-3">
+							<div class="col-md-6">
+								<input type="text" class="form-control custom-input" placeholder="Your Name" required>
+							</div>
+							<div class="col-md-6">
+								<input type="email" class="form-control custom-input" placeholder="Your Email" required>
+							</div>
+							<div class="col-12">
+								<textarea class="form-control custom-input" rows="5" placeholder="Your Message" required></textarea>
+							</div>
+							<div class="col-12 text-center">
+								<button type="submit" class="btn btn-primary px-5 py-2 rounded-pill">Send Message</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+{% endblock %}
