@@ -1,24 +1,43 @@
-# Python
+# Python bytecode
 __pycache__/
 *.py[cod]
+*.pyo
+*.pyd
 
-# Django
-/staticfiles/        # collected static files — ignore
-#/media/           # optional — you can track it if you want
-
-# Environments
-.env
-*.env
+# Virtual environments
 venv/
+env/
+ENV/
+.venv/
+.ENV/
 
-# VS Code
-.vscode/
+# Django SQLite database (temporary for deployment — remove later)
 
-# System
-.DS_Store
-Thumbs.db
+# Django migrations (optional to ignore if you prefer)
+*/migrations/__pycache__/
+*/migrations/*.pyc
+*/migrations/*.pyo
 
-# Build
+# Django static and media files
+media/
 *.log
-*.pot
-*.pyc
+
+# Collected static files (created by collectstatic)
+staticfiles/
+
+# Local environment files
+.env
+
+# VSCode or PyCharm
+.vscode/
+.idea/
+
+# macOS system files
+.DS_Store
+
+# Runtime
+*.pid
+
+# Railway build cache (optional)
+.build/
+

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 from dotenv import load_dotenv
 load_dotenv()  # this loads .env contents into os.environ
 
@@ -25,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
-
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost").split(',')
 
 # SECURITY
 #SECURE_SSL_REDIRECT = True  # Force HTTPS
@@ -35,14 +36,6 @@ SECURE_HSTS_SECONDS = 3600  # Optional, enable HTTP Strict Transport Security
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
 
-
-ALLOWED_HOSTS = [
-    'carolineheusssiliconedolls.com',
-    'www.carolineheusssiliconedolls.com',
-    'fii06pc6.up.railway.app',
-    'caroline-heuss-silicone-dolls.onrender.com',
-    'localhost', '127.0.0.1'
-]
 
 
 CSRF_TRUSTED_ORIGINS = [
@@ -104,11 +97,17 @@ WSGI_APPLICATION = 'caroline_dolls.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL')
+    )
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 
@@ -143,9 +142,8 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
 
+# https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 # Static files (CSS, JS, images)
 STATIC_URL = '/static/'
