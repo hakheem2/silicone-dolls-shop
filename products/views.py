@@ -40,6 +40,8 @@ def get_wishlist(request):
 
     wishlist, created = Wishlist.objects.get_or_create(session_key=session_key)
     return wishlist
+
+
 def add_to_wishlist(request):
     if request.method == 'POST':
         product_id = request.POST.get('product_id')
