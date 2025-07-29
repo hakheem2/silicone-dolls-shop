@@ -1,8 +1,19 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block meta %}
+	<title>Frequently Asked Questions – Caroline Heuss Silicone Dolls</title>
+    <meta name="description" content="Have questions about our dolls or your order? Check out our FAQ section for fast answers.">
+    <meta name="keywords" content="Silicone Doll FAQ, Order Questions, Delivery Info, Silicone Baby Care, Caroline Heuss Support">
+    <meta property="og:title" content="Caroline Heuss FAQ – Questions & Answers">
+    <meta property="og:description" content="From ordering to doll care, get all your questions answered in one place.">
+    <meta property="og:image" content="https://carolineheusssiliconedolls.com/static/site-logo.avif">
+    <meta property="og:url" content="https://carolineheusssiliconedolls.com/faqs/">
+    <meta name="twitter:card" content="summary_large_image">
+	<meta property="og:type" content="website">
+{% endblock %}
+
 {% block links %}
-	<title>FAQs | Caroline Heuss Silicone Dolls</title>
 	<style>
 		:root {
 			/* Color Variables */
@@ -634,20 +645,21 @@
 					<h4 class="text-center fw-bold mb-3">Still Have a Question?</h4>
 					<p class="text-center mb-4">Send us a message and we’ll respond as soon as possible. We’re here to help!</p>
 
-					<form>
+					<form class="form" id="faq-form">
+						{% csrf_token %}
 						<div class="row g-3">
-							<div class="col-md-6">
-								<input type="text" class="form-control custom-input" placeholder="Your Name" required>
-							</div>
-							<div class="col-md-6">
-								<input type="email" class="form-control custom-input" placeholder="Your Email" required>
-							</div>
-							<div class="col-12">
-								<textarea class="form-control custom-input" rows="5" placeholder="Your Message" required></textarea>
-							</div>
-							<div class="col-12 text-center">
-								<button type="submit" class="btn btn-primary px-5 py-2 rounded-pill">Send Message</button>
-							</div>
+								<div class="col-md-6">
+									<input type="text" class="form-control custom-input" name="name" placeholder="Your Name" required>
+								</div>
+								<div class="col-md-6">
+									<input type="email" class="form-control custom-input" name="email" placeholder="Your Email" required>
+								</div>
+								<div class="col-12">
+									<textarea class="form-control custom-input" name="question" rows="5" placeholder="Your Question?" required></textarea>
+								</div>
+								<div class="col-12 text-center">
+									<button type="submit" class="btn btn-primary px-5 py-2 rounded-pill" id="submit-faq-form">Send Message</button>
+								</div>
 						</div>
 					</form>
 				</div>
@@ -655,5 +667,34 @@
 		</div>
 	</section>
 
+	<script>
+		document.querySelector("#submit-faq-form").addEventListener("click", function(e) {
+			e.preventDefault();
+
+			const form = document.querySelector("#faq-form");
+			const formData = new FormData(form);
+
+			fetch("{% url 'core:submit_faq' %}", {
+				method: "POST",
+				headers: {
+					'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+				},
+				body: formData
+			})
+			.then(response => response.json())
+			.then(data => {
+				if (data.success) {
+					alert("✅ Your question was submitted successfully!");
+					form.reset();
+				} else {
+					alert("⚠️ " + data.error);
+				}
+			})
+			.catch(error => {
+				console.error("Error:", error);
+				alert("❌ Something went wrong. Try again.");
+			});
+		});
+	</script>
 
 {% endblock %}

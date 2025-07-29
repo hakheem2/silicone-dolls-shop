@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    /* Simple styling */
+    body { font-family: Arial, sans-serif; background-color: #f9f9f9; color: #333; }
+    .container { background: #fff; padding: 20px; border-radius: 8px; }
+    h2 { color: #007BFF; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>New Contact Form Submission</h2>
+    <p><strong>Name:</strong> {{ name }}</p>
+    <p><strong>Email:</strong> {{ email }}</p>
+    <p><strong>Subject:</strong> {{ subject }}</p>
+    <p><strong>Message:</strong></p>
+    <p>{{ message|linebreaks }}</p>
+  </div>
+</body>
+</html>

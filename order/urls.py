@@ -5,6 +5,7 @@ app_name = 'order'
 
 urlpatterns = [
     path('checkout/', views.checkout, name='checkout'),
-    #path('stripe-payment/', views.stripe_payment, name='stripe_payment'),
-    #path('paypal-payment/', views.paypal_payment, name='paypal_payment'),
+    path('checkout/process/', views.process_checkout_form, name='process_checkout_form'),
+    path('submit-order/', views.send_order_email, name='send_order_email'),
+    path('order-success/', views.order_success, name='order_success'),
 ]

@@ -1,8 +1,19 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block meta %}
+    <title>Baby Doll News & Tips – Caroline Heuss Blog</title>
+    <meta name="description" content="Read articles about caring for your silicone baby doll, behind-the-scenes stories, and latest doll releases.">
+    <meta name="keywords" content="Silicone Doll Tips, Doll Care Blog, Baby Doll News, Caroline Heuss Blog, Lifelike Dolls">
+    <meta property="og:title" content="Caroline Heuss Blog – Silicone Doll News and Tips">
+    <meta property="og:description" content="Learn how to care for your dolls, explore stories behind the art, and discover more.">
+    <meta property="og:image" content="https://carolineheusssiliconedolls.com/static/woman_painting_baby.avif">
+    <meta property="og:url" content="https://carolineheusssiliconedolls.com/blog/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:type" content="website">
+{% endblock %}
+
 {% block links %}
-    <title>Blog | Caroline Heuss Silicone Dolls</title>
     <style>
         .blog-banner{
             background: linear-gradient(160deg, #f3d1c5, #8fbc8f);

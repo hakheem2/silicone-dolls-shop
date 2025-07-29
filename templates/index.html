@@ -1,11 +1,23 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block meta %}
+    <title>Caroline Heuss Silicone Dolls – Lifelike Baby Dolls for Every Heart</title>
+    <meta name="description" content="Shop lifelike silicone baby dolls handcrafted by Caroline Heuss. Discover realistic baby dolls perfect for collectors, parents, and artists.">
+    <meta name="keywords" content="Silicone Dolls, Realistic Baby Dolls, Caroline Heuss, Lifelike Dolls, Reborn Dolls, Collectible Baby Dolls, Handmade Dolls, Baby Doll Gifts">
+    <meta name="author" content="Caroline Heuss">
+    <meta property="og:title" content="Caroline Heuss Silicone Dolls – Lifelike Baby Dolls for Every Heart">
+    <meta property="og:description" content="Discover stunning handmade silicone baby dolls by Caroline Heuss. Realistic and full of emotion.">
+    <meta property="og:image" content="https://carolineheusssiliconedolls.com/static/site-logo.avif">
+    <meta property="og:url" content="https://carolineheusssiliconedolls.com/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:type" content="website">
+{% endblock %}
+
 {% block links %}
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <!-- Page-specific CSS and Title -->
     <link rel="stylesheet" href="{% static 'css/home.css'%}">
-    <title>Home | Caroline Heuss Silicone Dolls</title>
     <style>
 
     .faq-section-wrapper {

@@ -1,8 +1,21 @@
 {% extends "base.html" %}
     {% load static %}
 
-    {% block links %}
+    {% block meta %}
         <title> Baby {{ product.name}} | Caroline Heuss Silicone Dolls</title>
+        <meta property="og:title" content=" {{ product.name }} – Realistic Silicone Baby Doll">
+        <meta property="og:description" content="{{ product.description }}">
+         <meta property="og:image" content="https://carolineheusssiliconedolls.com/{{ product.image.url }}">
+        <meta property="og:url" content="https://carolineheusssiliconedolls.com/products/product/{{product.name}}">
+        <meta property="og:type" content="website">
+
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{{ product.name }} – Realistic Silicone Baby Doll">
+        <meta name="twitter:description" content="Lifelike silicone doll crafted by Caroline Heuss. Handmade and perfect for collectors or gifting.">
+        <meta name="twitter:image" content="https://carolineheusssiliconedolls.com/{{ product.image.url }}">
+    {% endblock %}
+
+    {% block links %}
         <style>
             :root{
                 --prim-color: #d77546;

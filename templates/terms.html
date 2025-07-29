@@ -1,9 +1,19 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block links %}
+{% block meta %}
+    <title>Terms & Conditions – Caroline Heuss Silicone Dolls</title>
+    <meta name="description" content="Review our website’s terms of service, including shipping, returns, and customer obligations.">
+    <meta name="keywords" content="Terms and Conditions, Caroline Heuss Policies, Return Policy, Shipping Terms">
+    <meta property="og:title" content="Terms & Conditions – Caroline Heuss Dolls">
+    <meta property="og:description" content="Understand your rights and responsibilities when using our site.">
+    <meta property="og:image" content="https://carolineheusssiliconedolls.com/static/site-logo.avif">
+    <meta property="og:url" content="https://carolineheusssiliconedolls.com/privacy-terms/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:type" content="website">
+{% endblock %}
 
-    <title>FAQs | Caroline Heuss Silicone Dolls</title>
+{% block links %}
     <style>
         .terms-banner{
             background: linear-gradient(160deg, #f3d1c5, #8fbc8f);

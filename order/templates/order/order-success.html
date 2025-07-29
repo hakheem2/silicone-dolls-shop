@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block links %}
+
+{% endblock %}
+
+{% block content %}
+    <!-- Include the navigation bar -->
+    {% include "navbar.html" %}
+    
+    <div class="container">
+        <div class="row d-flex justify-content-center align-items-center" style="height: 70vh;">
+            <div class="col-12 col-md-6 text-center">
+                <h2 class="text-success h1 poppins-bold" style="font-size: 3rem;"> <span class="material-symbols-outlined text-success h2 py-0">check_circle_unread</span> Thank You for Your Order!</h2>
+                <p class="text-muted pt-2" style="font-size: 1.1rem;">Your order has been placed successfully. We’ve sent a confirmation email with your order details to your inbox.</p>
+                <p><a href="{% url 'product_list' %}" class="btn btn-success rounded px-5 py-2">Continue Shopping</a></p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

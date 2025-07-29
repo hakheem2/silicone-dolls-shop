@@ -14,6 +14,7 @@ urlpatterns = [
     path('products/', include('products.urls')),
     path('cart/', include('cart.urls', namespace='cart')),
     path('order/', include(('order.urls', 'order'), namespace='order')),
+    path('', include('core.urls', namespace='core')),
     # global pages
     path('about/', TemplateView.as_view(template_name='about.html'), name='about'),
     path('contact/', TemplateView.as_view(template_name='contact.html'), name='contact'),

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f9f9f9; color: #333; }
+    .container { background: #fff; padding: 20px; border-radius: 8px; }
+    h2 { color: #28a745; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>New FAQ Question Submission</h2>
+    <p><strong>Name:</strong> {{ name }}</p>
+    <p><strong>Email:</strong> {{ email }}</p>
+    <p><strong>Question:</strong></p>
+    <p>{{ question|linebreaks }}</p>
+  </div>
+</body>
+</html>
