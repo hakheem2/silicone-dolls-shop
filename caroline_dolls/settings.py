@@ -25,8 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
-DEBUG = os.getenv('DEBUG')
-# DEBUG = os.getenv('DEBUG', 'False') == 'True'
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 ALLOWED_HOSTS_ENV = os.getenv('ALLOWED_HOSTS', '')
 if ALLOWED_HOSTS_ENV:
     ALLOWED_HOSTS = ALLOWED_HOSTS_ENV.split(',')
@@ -47,8 +46,7 @@ else:
 CSRF_TRUSTED_ORIGINS = [
     "https://carolineheusssiliconedolls.com",
     "https://www.carolineheusssiliconedolls.com",
-    "https://fii06pc6.up.railway.app",
-    "https://caroline-heuss-silicone-dolls.onrender.com",
+    "https://web-production-e6e2e.up.railway.app/"
 ]
 
 
@@ -102,12 +100,35 @@ WSGI_APPLICATION = 'caroline_dolls.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL')
-    )
-}
+ENVIRONMENT = os.getenv('DJANGO_ENV', 'development')
 
+if ENVIRONMENT == 'production':
+    # Production: Use PostgreSQL from DATABASE_URL environment variable
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=os.getenv('DATABASE_URL'),
+            conn_max_age=600,
+            ssl_require=True
+        )
+    }
+else:
+    # Development: Use simple SQLite
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
+
+
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default=os.getenv('DATABASE_URL')
+#     )
+# }
+#
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
