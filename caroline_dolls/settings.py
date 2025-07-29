@@ -20,6 +20,7 @@ load_dotenv()  # this loads .env contents into os.environ
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
@@ -109,7 +110,6 @@ if ENVIRONMENT == 'production':
     }
 else:
     # Development: Use simple SQLite
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
