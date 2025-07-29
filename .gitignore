@@ -12,6 +12,7 @@ ENV/
 .ENV/
 
 # Django SQLite database (temporary for deployment — remove later)
+db.sqlite3
 
 # Django migrations (optional to ignore if you prefer)
 */migrations/__pycache__/
