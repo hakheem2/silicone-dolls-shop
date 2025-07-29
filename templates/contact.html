@@ -232,6 +232,14 @@
             }
         }
 
+        #form-response,
+		#form-response * {
+		animation: none !important;
+		transition: none !important;
+		opacity: 1 !important;
+		transform: none !important;
+		}
+
     </style>
 {% endblock %}
 
@@ -266,6 +274,7 @@
                             <form action="" class="form">
                                     {% csrf_token %}
                                     <h5 class="fs-4 raleway-medium w-100 py-3 text-center">Contact Form</h5>
+                                    <div id="form-response" class="mt-3"></div>
                                     <!-- Name Field -->
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="name" name="name" placeholder="Name..." required>
@@ -352,7 +361,8 @@
 
             const form = document.querySelector(".form");
             const formData = new FormData(form);
-
+            let responseBox = $('#form-response');
+            
             fetch("{% url 'core:submit_contact' %}", {
                 method: "POST",
                 headers: {
@@ -363,15 +373,15 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    alert("✅ Message sent successfully!");
+                    responseBox.html(`<div class="alert alert-success">Message sent successfully!</div>`);
                     form.reset();
                 } else {
-                    alert("⚠️ " + data.error);
+                    responseBox.html(`<div class="alert alert-success">${data.error}!</div>`);
                 }
             })
             .catch(error => {
-                console.error("Error:", error);
-                alert("❌ Something went wrong. Try again.");
+                //console.error("Error:", error);
+                responseBox.html('<div class="alert alert-danger">Something went wrong. Try again.</div>');
             });
         });
     </script>

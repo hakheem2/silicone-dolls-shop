@@ -201,6 +201,14 @@
 				background: #fff;
 			}
 		}
+
+		#form-response,
+		#form-response * {
+		animation: none !important;
+		transition: none !important;
+		opacity: 1 !important;
+		transform: none !important;
+		}
 	</style>
 {% endblock %}
 {% block content %}
@@ -648,6 +656,7 @@
 					<form class="form" id="faq-form">
 						{% csrf_token %}
 						<div class="row g-3">
+								<div id="form-response" class="mt-3"></div>
 								<div class="col-md-6">
 									<input type="text" class="form-control custom-input" name="name" placeholder="Your Name" required>
 								</div>
@@ -673,6 +682,7 @@
 
 			const form = document.querySelector("#faq-form");
 			const formData = new FormData(form);
+			let responseBox = $('#form-response');
 
 			fetch("{% url 'core:submit_faq' %}", {
 				method: "POST",
@@ -684,15 +694,15 @@
 			.then(response => response.json())
 			.then(data => {
 				if (data.success) {
-					alert("✅ Your question was submitted successfully!");
+					responseBox.html(`<div class="alert alert-success">Message sent successfully!</div>`);
 					form.reset();
 				} else {
-					alert("⚠️ " + data.error);
+					responseBox.html(`<div class="alert alert-success">${data.error}!</div>`);
 				}
 			})
 			.catch(error => {
-				console.error("Error:", error);
-				alert("❌ Something went wrong. Try again.");
+				//console.error("Error:", error);
+                responseBox.html('<div class="alert alert-danger">Something went wrong. Try again.</div>');
 			});
 		});
 	</script>
