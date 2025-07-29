@@ -43,7 +43,7 @@ ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").replace('"', '').split(",")
 CSRF_TRUSTED_ORIGINS = [
     "https://carolineheusssiliconedolls.com",
     "https://www.carolineheusssiliconedolls.com",
-    "https://web-production-e6e2e.up.railway.app/"
+    "https://web-production-e6e2e.up.railway.app"
 ]
 
 
