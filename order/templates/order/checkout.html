@@ -44,6 +44,10 @@
 		opacity: 1 !important;
 		transform: none !important;
 		}
+
+        #select_payment img{
+            width: 20px;
+        }
     </style>
 {% endblock %}
 
@@ -62,7 +66,7 @@
     <section class="body py-5" style="background: linear-gradient(to right, var(--sec-color-2), var(--msg-color));">
         <div class="container">
             <div class="row">
-                <div class="col-md-8 form-wrapper">
+                <div class="col-md-8 form-wrapper order-2 order-md-1">
                     <form method="POST" id="checkout-form" class="form bg-white shadow rounded py-5 px-4 mb-4">
                         {% csrf_token %}
                         <h3 class="title raleway-semibold dark-text pb-3">Shiiping Info</h3>
@@ -151,7 +155,7 @@
                 </div>
 
                 <!-- Summary Column -->
-				<div class="col-md-4">
+				<div class="col-md-4 order-1 order-md-2">
 					<!-- Coupon Card -->
 					<div class="card mb-4">
 						<div class="card-body">
@@ -232,6 +236,34 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+                // Function to get CSRF token from cookie
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let cookie of cookies) {
+                    cookie = cookie.trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        const csrftoken = getCookie('csrftoken');
+
+        // Automatically add CSRF token to all AJAX requests
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                const safeMethod = /^(GET|HEAD|OPTIONS|TRACE)$/.test(settings.type);
+                if (!safeMethod && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+
         $(document).ready(function () {
             $('#checkout-form').on('submit', function (e) {
                 e.preventDefault();
@@ -239,6 +271,22 @@
                 let form = $(this);
                 let btn = $('#submit-form');
                 let responseBox = $('#form-response');
+
+                responseBox.html(''); // Clear previous messages
+
+                // // Simple required fields check
+                // let name = $('input[name="name"]').val().trim();
+                // let email = $('input[name="email"]').val().trim();
+                // let phone = $('input[name="phone"]').val().trim();
+                // let address = $('input[name="address"]').val().trim();
+                // let city = $('input[name="city"]').val().trim();
+                // let country = $('input[name="country"]').val().trim();
+                // let paymentMethod = $('select[name="payment_method"]').val();
+
+                // if (!name || !email || !phone || !address || !city || !country || !paymentMethod) {
+                //     responseBox.html('<div class="alert alert-danger">Please fill out all fields.</div>');
+                //     return;
+                // }
 
                 btn.prop('disabled', true).text('Placing Order...');
 
@@ -257,13 +305,16 @@
                         }, 2000);
                     },
                     error: function (xhr) {
-                        responseBox.html('<div class="alert alert-danger">Something went wrong. Please try again.</div>');
+                        let errorMsg = 'Something went wrong. Please try again.';
+                        if (xhr.responseJSON && xhr.responseJSON.error) {
+                            errorMsg = xhr.responseJSON.error;
+                        }
+                        responseBox.html(`<div class="alert alert-danger">${errorMsg}</div>`);
                         btn.prop('disabled', false).text('Place Order');
                     }
                 });
             });
         });
-
     </script>
        
 

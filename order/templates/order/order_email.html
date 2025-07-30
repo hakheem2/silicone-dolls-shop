@@ -8,13 +8,13 @@
         .container { max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee; }
         h2 { color: #444; }
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { padding: 8px 12px; border-bottom: 1px solid #ddd; }
+        th, td { padding: 15px 20px; border-bottom: 1px solid #ddd; justify-content: center;}
         th { background-color: #f5f5f5; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>New Order Received</h2>
+        <h2>Order Placed</h2>
         <p><strong>Order:</strong> ORD-{{ order.order_number }}</p>
         <p><strong>Name:</strong> {{ order.name }}</p>
         <p><strong>Email:</strong> {{ order.email }}</p>
@@ -44,7 +44,7 @@
             </tbody>
         </table>
 
-        <p style="margin-top: 20px;"><strong>Total:</strong> ${{ order.total }}</p>
+        <p style="margin-top: 20px;"><strong>Total:&nbsp;${{ total }}</strong></p>
     </div>
 </body>
 </html>

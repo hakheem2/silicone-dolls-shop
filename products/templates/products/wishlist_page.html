@@ -1,42 +1,98 @@
 {% extends "base.html" %}
 {% load static %}
+{% block links %}
 
+  <style>
+    .wishlist-img {
+      width: 60px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 0.25rem;
+    }
+    .btn-black {
+      background-color: #000;
+      color: #fff;
+    }
+    .btn-black:hover {
+      background-color: #333;
+    }
+    .strike-price {
+      text-decoration: line-through;
+      color: #888;
+    }
+  </style>
+{% endblock %}
 {% block content %}
 <div class="container my-5">
-  <h2 class="mb-4">Your Wishlist</h2>
+  <div class="bg-white p-4 rounded shadow-sm">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h3 class="mb-0">My Wishlist</h3>
+      <a href="#" class="text-muted text-decoration-none">
+        <i class="bi bi-pencil"></i> Edit
+      </a>
+    </div>
 
-  <div class="row" id="wishlist-items">
-    {% for product in products %}
-      <div class="col-md-4 mb-4 wishlist-product" data-product-id="{{ product.id }}">
-        <div class="card h-100">
-          <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
-          <div class="card-body">
-            <h5 class="card-title">{{ product.name }}</h5>
-            <p class="card-text">${{ product.price }}</p>
-            <a href="{% url 'product_detail' slug=product.slug %}" class="btn btn-primary mb-2">
-              View Details
-            </a>
-            <button class="btn btn-outline-danger remove-from-wishlist" data-product-id="{{ product.id }}">
-              <i class="fas fa-trash-alt"></i> Remove
-            </button>
-          </div>
-        </div>
-      </div>
-    {% empty %}
-      <div class="col-12">
-        <p class="text-muted">Your wishlist is empty.</p>
-      </div>
-    {% endfor %}
+    {% if products %}
+    <div class="table-responsive">
+      <table class="table align-middle table-bordered table-hover">
+        <thead class="table-light">
+          <tr>
+            <th style="width: 40px;"></th>
+            <th>Product Name</th>
+            <th>Unit Price</th>
+            <th>Stock Status</th>
+            <th class="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="wishlist-items">
+          {% for product in products %}
+          <tr class="wishlist-product" data-product-id="{{ product.id }}">
+            <td class="text-center text-danger fs-5">
+              <button class="btn btn-sm text-danger remove-from-wishlist" data-product-id="{{ product.id }}">&times;</button>
+            </td>
+            <td>
+              <div class="d-flex align-items-center gap-3">
+                <img src="{{ product.image.url }}" class="wishlist-img" alt="{{ product.name }}">
+                <a href="{% url 'product_detail' slug=product.slug %}" class="text-decoration-none text-dark">
+                  {{ product.name }}
+                </a>
+              </div>
+            </td>
+            <td>
+              {% if product.discount_price %}
+                <span class="strike-price">${{ product.price }}</span>
+                <span class="text-success fw-semibold">${{ product.discount_price }}</span>
+              {% else %}
+                <span class="fw-semibold">${{ product.price }}</span>
+              {% endif %}
+            </td>
+            <td>
+              <span class="text-success">In Stock</span>
+              {# Optionally: use dynamic stock check like `product.stock > 0` #}
+            </td>
+            <td class="text-center">
+              <a href="{% url 'product_detail' slug=product.slug %}" class="btn btn-sm btn-primary me-2">View</a>
+              <button class="btn btn-black btn-sm">ADD TO CART</button>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+      <p class="text-muted">Your wishlist is empty.</p>
+    {% endif %}
   </div>
 </div>
 {% endblock %}
 
 {% block scripts %}
+<!-- Bootstrap Icons (optional) -->
+
 <script>
   $(document).ready(function () {
     $('.remove-from-wishlist').on('click', function (e) {
       e.preventDefault();
-
       const button = $(this);
       const productId = button.data('product-id');
 
@@ -49,11 +105,11 @@
         },
         success: function (response) {
           if (!response.added) {
-            const card = button.closest('.wishlist-product');
-            card.remove();
+            const row = button.closest('.wishlist-product');
+            row.remove();
 
             if ($('#wishlist-items .wishlist-product').length === 0) {
-              $('#wishlist-items').html('<p class="text-muted">Your wishlist is empty.</p>');
+              $('#wishlist-items').parent().html('<p class="text-muted">Your wishlist is empty.</p>');
             }
           }
         }

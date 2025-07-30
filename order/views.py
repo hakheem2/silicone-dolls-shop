@@ -52,6 +52,9 @@ def process_checkout_form(request):
         country = request.POST.get('country')
         payment_method = request.POST.get('payment_method')
 
+        if not all([name, email, phone, address, city, country, payment_method]):
+            return JsonResponse({'error': 'All fields are required.'}, status=400)
+
         cart = get_cart(request)
         cart_items_list = CartItem.objects.filter(cart=cart).select_related('product')
 
@@ -97,14 +100,14 @@ def process_checkout_form(request):
         cart_items_list.delete()
 
         # Send email after successful order creation
-        send_order_email(order, cart_items)
+        send_order_email(order, cart_items, total)
 
         return JsonResponse({'message': 'Order placed and email sent successfully'})
 
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
 
-def send_order_email(order, cart_items):
+def send_order_email(order, cart_items, total):
     subject = f"New Order ORD-{order.order_number}"
     from_email = settings.DEFAULT_FROM_EMAIL
     to_email = ['support@carolineheusssiliconedolls.com', 'anyengmondesonmbaubeh@gmail.com']
@@ -119,17 +122,14 @@ def send_order_email(order, cart_items):
 
     html_content = render_to_string('order/order_email.html', {
         'order': order,
-        'cart_items': cart_items
+        'cart_items': cart_items,
+        'total': total
     })
 
     msg = EmailMultiAlternatives(subject, '', from_email, to_email)
     msg.attach_alternative(html_content, "text/html")
 
-    try:
-        msg.send()
-    except Exception as e:
-        # Log or silently fail
-        print(f"Email failed: {e}")
+    msg.send()
 
 
 def order_success(request):
