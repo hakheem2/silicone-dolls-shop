@@ -17,7 +17,7 @@
             </ul>
             <!-- Navbar Icons -->
             <div class="navbar-icons d-flex align-items-center gap-2 gap-md-4">
-                <a href="" class="nav-link"><span class="material-symbols-outlined d-inline-block fs-1">favorite</span></a>
+                <a href="{% url 'wishlist_page' %}" class="nav-link"><span class="material-symbols-outlined d-inline-block fs-1">favorite</span></a>
                 <a href="{% url 'cart:cart_detail' %}" class="nav-link position-relative d-flex align-items-center">
                     <span class="material-symbols-outlined fs-1" style="margin-right: 10px;">shopping_cart</span>
                     <span class="badge bg-dark" style="position: absolute; top: -12px; right: -5px; border-radius: 10px; font-size: 10px;" id="cart-count">{{ cart_items_count }}</span>

@@ -104,35 +104,35 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
     <!-- Custom JS -->
     <!-- base.html or your main HTML -->
-<script>
-    // Function to get CSRF token from cookie
-    function getCookie(name) {
-        let cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            const cookies = document.cookie.split(';');
-            for (let cookie of cookies) {
-                cookie = cookie.trim();
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
+    <script>
+        // Function to get CSRF token from cookie
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let cookie of cookies) {
+                    cookie = cookie.trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
                 }
             }
+            return cookieValue;
         }
-        return cookieValue;
-    }
 
-    const csrftoken = getCookie('csrftoken');
+        const csrftoken = getCookie('csrftoken');
 
-    // Automatically add CSRF token to all AJAX requests
-    $.ajaxSetup({
-        beforeSend: function (xhr, settings) {
-            const safeMethod = /^(GET|HEAD|OPTIONS|TRACE)$/.test(settings.type);
-            if (!safeMethod && !this.crossDomain) {
-                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        // Automatically add CSRF token to all AJAX requests
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                const safeMethod = /^(GET|HEAD|OPTIONS|TRACE)$/.test(settings.type);
+                if (!safeMethod && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
             }
-        }
-    });
-</script>
+        });
+    </script>
 
 
      <script>
@@ -161,19 +161,19 @@
 
             // Open sidebar
             $openBtn.on('click', function () {
-            $sidebarCon.addClass('show');
+                $sidebarCon.addClass('show');
             });
 
             // Close sidebar
             $closeBtn.on('click', function () {
-            $sidebarCon.removeClass('show');
+                $sidebarCon.removeClass('show');
             });
 
             // Close if clicking outside sidebar (on overlay)
             $sidebarCon.on('click', function (e) {
-            if (e.target === this) {
-                $sidebarCon.removeClass('show');
-            }
+                if (e.target === this) {
+                    $sidebarCon.removeClass('show');
+                }
             });
 
 
@@ -231,50 +231,43 @@
 
 
             //styling wishlist buttons on load
-        
-
-            //add products to wishlist
-            $('.favourite').on('click', function(e) {
-                e.preventDefault();
-
-                let button = $(this);
-                let productId = button.data('product-id');
-                let isInWishlist = button.data('wishlist-added');  // 1 or 0
-
-                let url = isInWishlist == 1 
-                    ? '{% url "add_to_wishlist" %}'
-                    : '{% url "remove_from_wishlist" %}';
-                $.ajax({
-                    url: url,
-                    type: 'POST',
-                    
-                    data: {
-                        'product_id': productId,
-                    },
-                    success: function(response) {
-                        if (response.success) {
-                            // Toggle the state
-                            let newState = isInWishlist == 1 ? 0 : 1;
-                            button.data('wishlist-added', newState);
-
-                            // Toggle icon fill
-                            let icon = button.find('.material-symbols-outlined');
-                            icon.css('font-variation-settings', `"FILL" ${newState}`);
-                        }
-                    },
-                    error: function() {
-                            setTimeout(function() {
-                            $('#alertBox').css('display', 'block').html(
-                                `<div class="card-body pt-2 text-center d-flex align-items-center justify-content-center" style="opacity: 1 !important; transform: translateY(0) !important;">
-                                    <h3 class="raleway-semibold text-warning fs-5 pe-2" style="opacity: 1 !important; transform: translateY(0) !important;">An error occurred, please try again</h3>
-                                    <span class="material-symbols-outlined text-warning h2 py-0" style="opacity: 1 !important; transform: translateY(0) !important;">check_circle_unread</span>
-                                </div>
-                                <p class="text-warning d-block mx-auto raleway-medium" style="font-size: 1re,rem; opacity: 1 !important; transform: translateY(0) !important;">closing in 2s</p>`
-                            ).fadeOut();
-                            }, 2000);
+            // Load existing wishlist and style icons
+            $.get("{% url 'get_wishlist_items' %}", function (data) {
+                let wishlist = data.wishlist.map(String);
+                $('.favourite').each(function () {
+                    let button = $(this);
+                    let productId = button.data('product-id').toString();
+                    if (wishlist.includes(productId)) {
+                    button.find('.material-symbols-outlined')
+                        .css('font-variation-settings', "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48");
                     }
                 });
             });
+
+            //add products to wishlist
+            $('.favourite').on('click', function (e) {
+            e.preventDefault();
+            let button = $(this);
+            let productId = button.data('product-id');
+
+                $.ajax({
+                    url: "{% url 'toggle_wishlist' %}",
+                    method: "POST",
+                    data: {
+                    product_id: productId,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                    },
+                    success: function (response) {
+                    let icon = button.find('.material-symbols-outlined');
+                    if (response.added) {
+                        icon.css('font-variation-settings', "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48");
+                    } else {
+                        icon.css('font-variation-settings', "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48");
+                    }
+                    }
+                });
+            });
+
         });
         
     </script>

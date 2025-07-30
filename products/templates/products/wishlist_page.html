@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+  <h2 class="mb-4">Your Wishlist</h2>
+
+  <div class="row" id="wishlist-items">
+    {% for product in products %}
+      <div class="col-md-4 mb-4 wishlist-product" data-product-id="{{ product.id }}">
+        <div class="card h-100">
+          <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">${{ product.price }}</p>
+            <a href="{% url 'product_detail' slug=product.slug %}" class="btn btn-primary mb-2">
+              View Details
+            </a>
+            <button class="btn btn-outline-danger remove-from-wishlist" data-product-id="{{ product.id }}">
+              <i class="fas fa-trash-alt"></i> Remove
+            </button>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <div class="col-12">
+        <p class="text-muted">Your wishlist is empty.</p>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  $(document).ready(function () {
+    $('.remove-from-wishlist').on('click', function (e) {
+      e.preventDefault();
+
+      const button = $(this);
+      const productId = button.data('product-id');
+
+      $.ajax({
+        url: "{% url 'toggle_wishlist' %}",
+        method: "POST",
+        data: {
+          product_id: productId,
+          csrfmiddlewaretoken: '{{ csrf_token }}'
+        },
+        success: function (response) {
+          if (!response.added) {
+            const card = button.closest('.wishlist-product');
+            card.remove();
+
+            if ($('#wishlist-items .wishlist-product').length === 0) {
+              $('#wishlist-items').html('<p class="text-muted">Your wishlist is empty.</p>');
+            }
+          }
+        }
+      });
+    });
+  });
+</script>
+{% endblock %}

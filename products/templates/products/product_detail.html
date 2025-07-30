@@ -490,7 +490,7 @@
                                 transition: all 0.3s ease;
 
                                 .material-symbols-outlined {
-                                    font-size: 2.3rem;
+                                    font-size: 2.7rem;
                                     transition: all 0.3s ease;
                                     z-index: 900;
                                 }
@@ -822,13 +822,8 @@
                         <div class="product-card shadow">
                             <div class="product-img">
                                 <img src="{{ item.image.url }}" class="img img-fluid img-thumpnail" alt="item.name">
-                                <button 
-                                    class="favourite" 
-                                    id="add-favourite-{{ product.id }}" 
-                                    data-product-id="{{ product.id }}" 
-                                    data-wishlist-added="{% if product.id in wishlist_products %}1{% else %}0{% endif %}">
-                                    <span class="material-symbols-outlined"
-                                        style="font-variation-settings: 'FILL' {% if product.id in wishlist_products %}1{% else %}0{% endif %};">
+                                <button class="favourite" data-product-id="{{ product.id }}" >
+                                    <span class="material-symbols-outlined" style="">
                                         favorite
                                     </span>
                                 </button>

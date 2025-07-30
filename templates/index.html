@@ -359,13 +359,8 @@
                         <div class="product-card shadow">
                             <div class="product-img">
                                 <img src="{{ product.image.url }}" class="img img-fluid img-thumpnail" alt="Silicone Doll 1">
-                                <button 
-                                    class="favourite" 
-                                    id="add-favourite-{{ product.id }}" 
-                                    data-product-id="{{ product.id }}" 
-                                    data-wishlist-added="{% if product.id in wishlist_products %}1{% else %}0{% endif %}">
-                                    <span class="material-symbols-outlined"
-                                        style="font-variation-settings: 'FILL' {% if product.id in wishlist_products %}1{% else %}0{% endif %};">
+                                <button class="favourite" data-product-id="{{ product.id }}" >
+                                    <span class="material-symbols-outlined" style="">
                                         favorite
                                     </span>
                                 </button>

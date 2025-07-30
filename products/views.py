@@ -1,17 +1,16 @@
 from django.http import JsonResponse
 from django.shortcuts import render , redirect, get_object_or_404
 from .models import Product, ProductCategory, Wishlist
+from django.views.decorators.http import require_POST
+
 
 def product_list(request):
     products = Product.objects.filter()
     categories = ProductCategory.objects.all()
-    wishlist = get_wishlist(request)
-    wishlist_products = wishlist.products.values_list('id', flat=True)
 
     context = {
         'products': products,
         'categories': categories,
-        'wishlists': wishlist_products,
     }
     return render(request, 'products/product_list.html', context)
 
@@ -25,58 +24,51 @@ def product_detail(request, slug):
     return render(request, 'products/product_detail.html', context)
 
 
-# def wishlist_view(request):
-#     wishlist = get_wishlist(request)
-#     items = wishlist.items.select_related('product')
-#     return render(request, 'wishlist.html', {'items': items})
 
-
-def get_wishlist(request):
-    # Ensure session exists
-    session_key = request.session.session_key
-    if not session_key:
+def get_session_key(request):
+    if not request.session.session_key:
         request.session.create()
-        session_key = request.session.session_key
+    return request.session.session_key
+
+
+def wishlist_page(request):
+    session_key = get_session_key(request)
+    try:
+        wishlist = Wishlist.objects.get(session_key=session_key)
+        products = wishlist.products.all()
+    except Wishlist.DoesNotExist:
+        products = []
+
+    return render(request, 'products/wishlist_page.html', {
+        'products': products
+    })
+
+
+
+def get_wishlist_items(request):
+    session_key = get_session_key(request)
+    try:
+        wishlist = Wishlist.objects.get(session_key=session_key)
+        product_ids = list(wishlist.products.values_list('id', flat=True))
+    except Wishlist.DoesNotExist:
+        product_ids = []
+
+    return JsonResponse({'wishlist': product_ids})
+
+
+@require_POST
+def toggle_wishlist(request):
+    session_key = get_session_key(request)
+    product_id = request.POST.get('product_id')
+    product = get_object_or_404(Product, id=product_id)
 
     wishlist, created = Wishlist.objects.get_or_create(session_key=session_key)
-    return wishlist
 
+    if product in wishlist.products.all():
+        wishlist.products.remove(product)
+        added = False
+    else:
+        wishlist.products.add(product)
+        added = True
 
-def add_to_wishlist(request):
-    if request.method == 'POST':
-        product_id = request.POST.get('product_id')
-
-        if not product_id:
-            return JsonResponse({'success': False, 'error': 'No product ID provided.'})
-
-        product = get_object_or_404(Product, id=product_id)
-        wishlist = get_wishlist(request)
-
-        if not wishlist.products.filter(id=product.id).exists():
-            wishlist.products.add(product)
-
-        wishlist.save()
-
-        return JsonResponse({'success': True, 'message': 'Product added to wishlist.'})
-
-    return JsonResponse({'success': False, 'error': 'Invalid request method.'})
-
-
-def remove_from_wishlist(request):
-    if request.method == 'POST':
-        product_id = request.POST.get('product_id')
-
-        if not product_id:
-            return JsonResponse({'success': False, 'error': 'No product ID provided.'})
-
-        product = get_object_or_404(Product, id=product_id)
-        wishlist = get_wishlist(request)
-
-        if wishlist.products.filter(id=product.id).exists():
-            wishlist.products.remove(product)
-
-        wishlist.save()
-
-        return JsonResponse({'success': True, 'message': 'Product removed from wishlist.'})
-
-    return JsonResponse({'success': False, 'error': 'Invalid request method.'})
+    return JsonResponse({'added': added})

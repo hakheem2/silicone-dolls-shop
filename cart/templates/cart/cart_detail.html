@@ -105,6 +105,12 @@
 			background-color: #4466f2 !important;
 			border-color: #4466f2 !important;
 		}
+
+		@media (max-width: 768px){
+			#select_payment img{
+				width: 20px;
+			}
+		}
 	</style>
 {% endblock %}
 
@@ -164,7 +170,7 @@
 								</div>
 								<div class="col-md-4 mx-0 text-md-center text-end px-md-0">
 									<!-- Wishlist and Remove buttons -->
-									<button type="button" data-product-id="{{ item.product.id }}" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger add_to_favourite" data-mdb-tooltip-init title="Move to the wish list">
+									<button type="button" data-product-id="{{ item.product.id }}" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger add_to_favourite favourite" data-mdb-tooltip-init title="Move to the wish list">
 										<i class="fas fa-heart text-white"></i>
 									</button>
 									<button type="button" data-product-id="{{ item.product.id }}" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary remove_item" data-mdb-tooltip-init title="Remove item">
@@ -357,35 +363,39 @@
 				});
 			}
 
-			// On quantity input blur
-			$(document).on('blur', '.cart-quantity-input', function () {
-				const productId = $(this).data('product-id');
-				const quantity = parseInt($(this).val());
-				if (quantity >= 1) {
-					updateCartQuantity(productId, quantity);
-				}
-			});
+		});
 
-			// On quantity increase button click
-			$(document).on('click', '.quantity-increase', function () {
-				const input = $(this).siblings('.form-outline').find('.cart-quantity-input');
-				let quantity = parseInt(input.val()) || 1;
-				quantity++;
+		// On quantity input blur
+		$(document).on('blur', '.cart-quantity-input', function () {
+			const productId = $(this).data('product-id');
+			const quantity = parseInt($(this).val());
+			if (quantity >= 1) {
+				updateCartQuantity(productId, quantity);
+			}
+		});
+
+		// On quantity increase button click
+		$(document).on('click', '.quantity-increase', function () {
+			const input = $(this).siblings('.form-outline').find('.cart-quantity-input');
+			let quantity = parseInt(input.val()) || 1;
+			quantity++;
+			input.val(quantity);
+			updateCartQuantity($(this).data('product-id'), quantity);
+		});
+
+		// On quantity decrease button click
+		$(document).on('click', '.quantity-decrease', function () {
+			const input = $(this).siblings('.form-outline').find('.cart-quantity-input');
+			let quantity = parseInt(input.val()) || 1;
+			if (quantity > 1) {
+				quantity--;
 				input.val(quantity);
 				updateCartQuantity($(this).data('product-id'), quantity);
-			});
+			}
+		});
 
-			// On quantity decrease button click
-			$(document).on('click', '.quantity-decrease', function () {
-				const input = $(this).siblings('.form-outline').find('.cart-quantity-input');
-				let quantity = parseInt(input.val()) || 1;
-				if (quantity > 1) {
-					quantity--;
-					input.val(quantity);
-					updateCartQuantity($(this).data('product-id'), quantity);
-				}
-			});
 
+		$(document).ready(function () {
 			// Remove item from cart
 			$('.remove_item').on('click', function () {
 				const productId = $(this).data('product-id');
@@ -405,5 +415,35 @@
 				});
 			});
 		});
+
+		// adding product to wishlist from cart page
+		$(document).ready(function () {
+			$('.add_to_favourite').on('click', function (e) {
+			e.preventDefault();
+
+			const button = $(this);
+			const productId = button.data('product-id');
+
+			$.ajax({
+				url: "{% url 'toggle_wishlist' %}",
+				method: "POST",
+				data: {
+				product_id: productId,
+				csrfmiddlewaretoken: '{{ csrf_token }}'
+				},
+				success: function (response) {
+				if (response.added) {
+					// Optional: show visual feedback like a success alert
+					button.find('i').removeClass('text-white').addClass('text-warning');
+					alert('Product added to wishlist!');
+				} else {
+					button.find('i').removeClass('text-warning').addClass('text-white');
+					alert('Product removed from wishlist!');
+				}
+				}
+			});
+			});
+		});
+
 	</script>
 {% endblock %}
